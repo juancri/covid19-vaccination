@@ -7,7 +7,7 @@ Generates CSV file from DEIS vaccination report
 
 - [Node 12.x](https://nodejs.org/en/)
 - [tsc](https://www.typescriptlang.org/)
-- [make](https://www.gnu.org/software/make/) (optional)
+- [make](https://www.gnu.org/software/make/)
 
 ## Setup
 
@@ -20,13 +20,10 @@ Generates CSV file from DEIS vaccination report
 
 ## Build
 
-Run `make` or `tsc`
+Run `make`
 
 ## Run
 
-`node process.js`
+`node dist/process.js`
 
 This will generate a new file: `output.csv`
-
-
-
