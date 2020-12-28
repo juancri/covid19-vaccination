@@ -1,0 +1,21 @@
+{
+  "name": "covid19-vaccination",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/json2csv": "^5.0.1",
+    "@types/luxon": "^1.25.0",
+    "@types/node": "^14.14.16"
+  },
+  "dependencies": {
+    "json2csv": "^5.0.5",
+    "linq": "^3.2.3",
+    "luxon": "^1.25.0"
+  }
+}
