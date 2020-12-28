@@ -11,12 +11,12 @@ Generates CSV file from DEIS vaccination report
 
 ## Setup
 
-1.- Run `npm install`
-2.- Visit https://deis.minsal.cl
-3.- Click on "Avance de Vacunación Campaña SARS-CoV-2"
-4.- Open the dev tools of your web browser (eg: [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools))
-5.- Look for the right JSON file. Usually the last file with the URL `jobs?...`
-6.- Download the JSON file and place it in this directory with the name `data.json`
+- Run `npm install`
+- Visit https://deis.minsal.cl
+- Click on "Avance de Vacunación Campaña SARS-CoV-2"
+- Open the dev tools of your web browser (eg: [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools))
+- Look for the right JSON file. Usually the last file with the URL `jobs?...`
+- Download the JSON file and place it in this directory with the name `data.json`
 
 ## Run
 
