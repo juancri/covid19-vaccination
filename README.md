@@ -7,7 +7,7 @@ Generates CSV file from DEIS vaccination report
 
 - [Node 12.x](https://nodejs.org/en/)
 - [tsc](https://www.typescriptlang.org/)
-- [make](https://www.gnu.org/software/make/)
+- [make](https://www.gnu.org/software/make/) (optional)
 
 ## Setup
 
@@ -18,12 +18,13 @@ Generates CSV file from DEIS vaccination report
 - Look for the right JSON file. Usually the last file with the URL `jobs?...`
 - Download the JSON file and place it in this directory with the name `data.json`
 
+## Build
+
+Run `make` or `tsc`
+
 ## Run
 
-```
-make
-node process.js
-```
+`node process.js`
 
 This will generate a new file: `output.csv`
 
