@@ -1,0 +1,11 @@
+#!/bin/bash
+TAG=`date +%Y-%m-%d`
+echo $TAG
+read -p "Press enter to continue"
+gh release create \
+  $TAG \
+  output.csv \
+  --title $TAG \
+  --notes ""
+
+
