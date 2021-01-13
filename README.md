@@ -1,7 +1,11 @@
 
 ## covid19-vaccination
 
-Generates CSV file from DEIS vaccination report
+Generates CSV file from DEIS vaccination report.
+
+### Releases
+
+Since this process is not yet straightforward, I run it every day and publish the updated data in [Releases](https://www.github.com/juancri/covid19-vaccination/releases). Check the last release [here](https://www.github.com/juancri/covid19-vaccination/releases/latest). Each release include the output file called `output.csv`.
 
 ## Requirements
 
