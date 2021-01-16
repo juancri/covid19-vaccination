@@ -18,6 +18,7 @@ const PROMPT_CONFIG = [
 	{ type: 'number', name: 'secondTotal', message: 'Second dose:' },
 	{ type: 'text', name: 'date', message: 'Date:' }
 ];
+const TOTAL_POPULATION = 15_000_000;
 
 const getTotal = (row: { [key: string]: string }) =>
 {
@@ -51,4 +52,9 @@ const getTotal = (row: { [key: string]: string }) =>
 	// Write
 	const csvOutput = stringify(csv, STRINGIFY_OPTIONS);
 	fs.writeFileSync(FILE_PATH, csvOutput);
+
+	// Show percentages
+	const firstRatio = firstTotal / TOTAL_POPULATION * 100;
+	const secondRatio = secondTotal / TOTAL_POPULATION * 100;
+	console.log(`${firstRatio} ${secondRatio}`);
 })();
