@@ -12,7 +12,8 @@ import { DateTime } from 'luxon';
 const FILE_PATH = path.join(__dirname, '../output.csv');
 const PARSE_OPTIONS = { columns: true };
 const TOTAL_POPULATION = 15_000_000;
-const FORMAT = formatNumber({ integerSeparator: '.' });
+const INTEGER_FORMAT = formatNumber({ integerSeparator: '.' });
+const PERCENTAGE_FORMAT = formatNumber({ decimal: ',', truncate: 2 });
 
 const getTotal = (row: { [key: string]: string }) =>
 {
@@ -40,7 +41,7 @@ const firstRatio = total1 / TOTAL_POPULATION * 100;
 const secondRatio = total2 / TOTAL_POPULATION * 100;
 console.log(
 	`Vacunación en Chile hasta el ${date.toFormat('dd/MM/yyyy')}:\n\n` +
-	`Primera dosis: ${FORMAT(total1)} personas (${firstRatio.toFixed(2)}%)\n` +
-	`Segunda dosis: ${FORMAT(total2)} personas (${secondRatio.toFixed(2)}%)\n\n` +
+	`Primera dosis: ${INTEGER_FORMAT(total1)} personas (${PERCENTAGE_FORMAT(firstRatio)}%)\n` +
+	`Segunda dosis: ${INTEGER_FORMAT(total2)} personas (${PERCENTAGE_FORMAT(secondRatio)}%)\n\n` +
 	'(Calculado en base a un universo a vacunar de 15 millones de personas)\n\n' +
 	'#Covid19Chile');
