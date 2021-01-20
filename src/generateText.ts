@@ -42,4 +42,5 @@ console.log(
 	`Vacunación en Chile hasta el ${date.toFormat('dd/MM/yyyy')}:\n\n` +
 	`Primera dosis: ${FORMAT(total1)} personas (${firstRatio.toFixed(2)}%)\n` +
 	`Segunda dosis: ${FORMAT(total2)} personas (${secondRatio.toFixed(2)}%)\n\n` +
-	'(Calculado en base a un universo a vacunar de 15 millones de personas)');
+	'(Calculado en base a un universo a vacunar de 15 millones de personas)\n\n' +
+	'#Covid19Chile');
