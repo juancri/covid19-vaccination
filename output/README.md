@@ -3,7 +3,7 @@
 
 ## chile-vaccination.csv
 
-This files includes data about the total of vaccines reported by [DEIS](https://deis.minsal.cl/).
+This file includes data about the total of vaccines reported by [DEIS](https://deis.minsal.cl/).
 
 This file is updated daily (around 00:00 UTC).
 
