@@ -12,7 +12,7 @@ This repository includes code and data related with the vaccination process agai
 
 ## Use
 
-Feel free to use this data. You can use cite this work as *COVID-19 Vaccination (JC Olivares)*.
+Feel free to use this data. You can cite this work as *COVID-19 Vaccination (JC Olivares)*.
 
 Currently used by:
 
