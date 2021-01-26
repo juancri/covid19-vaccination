@@ -16,5 +16,5 @@ Feel free to use this data. You can use cite this work as *COVID-19 Vaccination 
 
 Currently used by:
 
-- **[owid/covid-19-data](/owid/covid-19-data):** Data on COVID-19 (coronavirus) cases, deaths, hospitalizations, tests • All countries • Updated daily by Our World in Data
-- **[sociepy/covid19-vaccination-subnational](/sociepy/covid19-vaccination-subnational):** Global COVID-19 vaccination data at regional level
+- **[owid/covid-19-data](https://github.com/owid/covid-19-data):** Data on COVID-19 (coronavirus) cases, deaths, hospitalizations, tests • All countries • Updated daily by Our World in Data
+- **[sociepy/covid19-vaccination-subnational](https://github.com/sociepy/covid19-vaccination-subnational):** Global COVID-19 vaccination data at regional level
