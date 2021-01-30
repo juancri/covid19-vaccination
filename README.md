@@ -18,3 +18,4 @@ Currently used by:
 
 - **[owid/covid-19-data](https://github.com/owid/covid-19-data):** Data on COVID-19 (coronavirus) cases, deaths, hospitalizations, tests • All countries • Updated daily by Our World in Data
 - **[sociepy/covid19-vaccination-subnational](https://github.com/sociepy/covid19-vaccination-subnational):** Global COVID-19 vaccination data at regional level
+- **[MinCiencia/Datos-COVID19](https://github.com/MinCiencia/Datos-COVID19):** Ministerio de Ciencias - Datos-COVID19
