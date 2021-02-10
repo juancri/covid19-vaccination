@@ -1,4 +1,4 @@
 all:
+	npx eslint src
 	rm -rf dist/
-	eslint src/**/*.ts
-	tsc
+	npx tsc
