@@ -11,16 +11,9 @@ import MessageGenerator from './MessageGenerator';
 	try
 	{
 		const rows = CsvLoader.load();
-		const deisResults = await DeisClient.getFiles();
-		const result = deisResults.get(4422);
-		if (!result)
-		{
-			const available = Array
-				.from(deisResults.keys())
-				.map(n => n.toString())
-				.join(', ');
-			throw new Error(`Result not found: 4422. Available: ${available}`);
-		}
+		const client = new DeisClient();
+		await client.loadFiles();
+		const result = client.findFile('dd4422');
 		const newValues = JsonLoader.load(result);
 		DataJoiner.add(rows, newValues);
 		CsvWriter.write(rows);
