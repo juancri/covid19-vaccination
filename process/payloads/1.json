@@ -1,0 +1,409 @@
+{
+	"@element": "SASReport",
+	"xmlns": "http://www.sas.com/sasreportmodel/bird-4.2.4",
+	"nextUniqueNameIndex": 6939,
+	"dataDefinitions": [
+		{
+			"@element": "ParentDataDefinition",
+			"name": "dd4422",
+			"businessItems": [
+				{
+					"name": "bi4417",
+					"base": "bi2331",
+					"@element": "RelationalDataItem"
+				},
+				{
+					"name": "bi4419",
+					"base": "bi2335",
+					"@element": "RelationalDataItem"
+				},
+				{
+					"name": "bi4420",
+					"base": "bi2336",
+					"@element": "RelationalDataItem"
+				},
+				{
+					"name": "bi4421",
+					"base": "bi3706",
+					"@element": "RelationalDataItem"
+				}
+			],
+			"source": "ds2322",
+			"childQueryRelationshipType": "independent",
+			"dataDefinitionList": [
+				{
+					"@element": "DataDefinition",
+					"name": "dd4423",
+					"type": "multidimensional",
+					"multidimensionalQueryList": [
+						{
+							"detail": false,
+							"axes": [
+								{
+									"@element": "Query_Axis",
+									"type": "column",
+									"itemList": [
+										"bi4417"
+									]
+								},
+								{
+									"@element": "Query_Axis",
+									"type": "row",
+									"itemList": [
+										"bi4419",
+										"bi4420",
+										"bi4421"
+									]
+								}
+							],
+							"@element": "MultidimensionalQuery",
+							"columnSortItems": [
+								{
+									"sortDirection": "ascending",
+									"@element": "SortItem",
+									"reference": "bi4417"
+								}
+							]
+						}
+					],
+					"source": "ds2322",
+					"resultDefinitions": [
+						{
+							"@element": "ResultDefinition",
+							"name": "dd4418",
+							"purpose": "primary",
+							"maxRowsBehavior": "truncate",
+							"maxRowsLookup": "graphDefault"
+						}
+					]
+				}
+			]
+		}
+	],
+	"dataSources": [
+		{
+			"@element": "DataSource",
+			"name": "ds2322",
+			"label": "TABLA_PRINCIPAL_COVID",
+			"type": "relational",
+			"casResource": {
+				"@element": "CasResource",
+				"server": "cas-shared-default",
+				"library": "ReportesExternos",
+				"table": "TABLA_PRINCIPAL_COVID",
+				"locale": "es_ES"
+			},
+			"businessItemFolder": {
+				"@element": "BusinessItemFolder",
+				"items": [
+					{
+						"name": "bi2331",
+						"label": "Región Ocurrencia",
+						"sortOn": "custom",
+						"xref": "REGION_CORTO",
+						"customSort": "cs3731",
+						"@element": "DataItem"
+					},
+					{
+						"name": "bi2335",
+						"label": "1 Dosis",
+						"format": "COMMA11.",
+						"xref": "SUM_of_CANTIDAD_DOSIS_PRIMERA",
+						"@element": "DataItem"
+					},
+					{
+						"name": "bi2336",
+						"label": "2 Dosis",
+						"format": "COMMA11.",
+						"xref": "SUM_of_CANTIDAD_DOSIS_SEGUNDA",
+						"@element": "DataItem"
+					},
+					{
+						"name": "bi3706",
+						"label": "Porcentaje de personas con esquema completo",
+						"format": "PERCENT12.1",
+						"@element": "AggregateCalculatedItem",
+						"dataType": "double",
+						"expression": {
+							"@element": "Expression",
+							"value": "cond(gt(${bi2336,raw},0),div(aggregate(sum,group,${bi2336,raw}),aggregate(sum,group,${bi2335,raw})),0)"
+						}
+					},
+					{
+						"name": "bi2323",
+						"label": "Laboratorio",
+						"xref": "CAMP",
+						"@element": "DataItem"
+					}
+				]
+			}
+		}
+	],
+	"customSorts": [
+		{
+			"@element": "CustomSort",
+			"name": "cs2943",
+			"type": "string",
+			"valueList": [
+				{
+					"@element": "Sort_Value",
+					"value": "Personal de salud"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "P. Servicios esenciales del estado"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "P. en centros cerrados"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "P. Servicios infraestructura crítica"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Funcionarios Públicos"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Población Sana"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Población vulnerable"
+				}
+			]
+		},
+		{
+			"@element": "CustomSort",
+			"name": "cs3731",
+			"type": "string",
+			"valueList": [
+				{
+					"@element": "Sort_Value",
+					"value": " Arica y Parinacota"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Tarapacá"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Antofagasta"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Atacama"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Coquimbo"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Valparaíso"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Metropolitana  Santiago"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Libertador B. O'Higgins"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Maule"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Ñuble"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Bíobío"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " La Araucanía"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Los Ríos"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Los Lagos"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Aisén Gral. C. Ibáñez Campo"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Magallanes y  La Antártica Chilena"
+				}
+			]
+		},
+		{
+			"@element": "CustomSort",
+			"name": "cs4923",
+			"type": "string",
+			"valueList": [
+				{
+					"@element": "Sort_Value",
+					"value": "Menor 18"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "18 - 39"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "40 - 49"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "50 - 59"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "60 - 69"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "70 - 72"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "73 - 74"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "75 - 77"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "78 - 80"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "81 - 84"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "85 - 86"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "87 - 89"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "90 y más"
+				}
+			]
+		},
+		{
+			"@element": "CustomSort",
+			"name": "cs4925",
+			"type": "string",
+			"valueList": [
+				{
+					"@element": "Sort_Value",
+					"value": "16-17"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "18 - 39"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "40 - 49"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "50 - 59"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "60 y más"
+				}
+			]
+		},
+		{
+			"@element": "CustomSort",
+			"name": "cs6216",
+			"type": "string",
+			"valueList": [
+				{
+					"@element": "Sort_Value",
+					"value": "15-17"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "18-39"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "40-49"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "50-59"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "60-69"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "70-72"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "73-74"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "75-77"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "78-80"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "81-84"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "85-86"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "87-89"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "90 y más"
+				}
+			]
+		}
+	],
+	"sasReportState": {
+		"@element": "SASReportState",
+		"data": {
+			"@element": "Data_State",
+			"queryRequests": [
+				{
+					"@element": "queryRequest",
+					"data": "dd4422",
+					"dataLevel": "custom"
+				}
+			]
+		},
+		"date": "2021-02-13T22:28:16.445Z"
+	}
+}

@@ -1,31 +1,17 @@
 
-import puppeteer from 'puppeteer';
+import puppeteer, { HTTPRequest } from 'puppeteer';
 
-import { DeisResult } from './Types';
-import { sleep } from './util/sleep';
+import { DeisCredentials } from '../Types';
+import { sleep } from '../util/sleep';
 
-interface Result {
-	url: string;
-	postData: string | undefined;
-	body: string;
-}
-
-const KNOWN_QUERIES: string[] = [
-	'dd4422',
-	'Pfizer',
-	'Sinovac'
-];
-
-export default class DeisClient
+export default class DeisAuthScrapper
 {
-	private files: Map<string, DeisResult> | null = null;
-
-	public async loadFiles(): Promise<void>
+	public static async getCredentials(): Promise<DeisCredentials>
 	{
 		const browser = await puppeteer.launch({ headless: true });
 		const page = await browser.newPage();
 		await page.setRequestInterception(true);
-		const results: Result[] = [];
+		const requests: HTTPRequest[] = [];
 
 		page.on('request', request => {
 			request.continue();
@@ -45,15 +31,8 @@ export default class DeisClient
 				return;
 			}
 
-			// Get data
-			const buffer = await response.buffer();
-			const postData = request.postData();
-			const result = {
-				url,
-				postData,
-				body: buffer.toString()
-			};
-			results.push(result);
+			// Save
+			requests.push(request);
 		});
 
 		console.log('Opening...');
@@ -84,46 +63,29 @@ export default class DeisClient
 		}
 		console.log('Waiting for selector...');
 		await frame.waitForSelector('#appSplitView-reportPanelView-0-sectionTabBar--header > #appSplitView-reportPanelView-0-sectionTabBar--header-scrollContainer > #appSplitView-reportPanelView-0-sectionTabBar--header-head > #__filter0-appSplitView-reportPanelView-0-sectionTabBar--header-6 > .sapMITBContentArrow');
-		console.log('Clicking...');
-		await frame.click('#appSplitView-reportPanelView-0-sectionTabBar--header > #appSplitView-reportPanelView-0-sectionTabBar--header-scrollContainer > #appSplitView-reportPanelView-0-sectionTabBar--header-head > #__filter0-appSplitView-reportPanelView-0-sectionTabBar--header-6 > .sapMITBContentArrow');
 		console.log('Sleeping...');
 		await sleep(5_000);
-		console.log('Closing...');
+		// Get first request
+		if (!requests.length)
+			throw new Error('No requests found');
+		const request = requests[requests.length - 1];
+
+		// Save data
+		// Token
+		const xCsrfToken = request.headers()['x-csrf-token'];
+
+		// Cookie
+		const cookies = await page.cookies('https://informesdeis.minsal.cl/reportData/jobs');
+		const jSessionID = cookies[0].value;
+
+		// Get executor
+		const url = new URL(request.url());
+		const executorID = url.searchParams.get('executorId');
+		if (!executorID)
+			throw new Error(`No executor id found: ${url.searchParams}`);
+
+		// Done
 		await browser.close();
-
-		const data: [string, DeisResult][] = results
-			.map(r => [DeisClient.getDeisName(r), DeisClient.getDeisResult(r)])
-			.filter(p => p[0] !== null) as [string, DeisResult][];
-		this.files = new Map(data);
-	}
-
-	public findFile(name: string): DeisResult
-	{
-		if (!this.files)
-			throw new Error('Files have not been loaded yet');
-
-		const result = this.files.get(name);
-		if (!result)
-		{
-			const available = Array
-				.from(this.files.keys())
-				.join(', ');
-			throw new Error(`Result not found: ${name}. Available: ${available}`);
-		}
-
-		return result;
-	}
-
-	private static getDeisName(r: Result): string | null
-	{
-		return KNOWN_QUERIES
-			.find(q => r.postData?.includes(q)) || null;
-	}
-
-	private static getDeisResult(r: Result): DeisResult
-	{
-		const body = JSON.parse(r.body);
-		const content = JSON.parse(body.results.content);
-		return content.results[0] as DeisResult;
+		return { xCsrfToken, jSessionID, executorID };
 	}
 }
