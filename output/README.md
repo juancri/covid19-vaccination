@@ -15,4 +15,4 @@ This file is updated daily (around 00:00 UTC).
 
 ### Values
 
-The value of each cell can be a number of total-to-date or empty if there's no information. Since we didn't track vaccinations per region before Jan 23, 2021, values for previous dates are empty for specific regions. Only *Total* rows have values.
+The value of each cell is the total-to-date.
