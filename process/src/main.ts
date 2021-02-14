@@ -1,7 +1,6 @@
 
+import Writers from './csv/Writers';
 import DeisClient from './deis/DeisClient';
-import ChileVaccinations from './csv/ChileVaccinations';
-import ChileVaccinationsType from './csv/ChileVaccinationsType';
 import generateMessage from './util/generateMessage';
 import Logger from './util/Logger';
 
@@ -13,8 +12,7 @@ const logger = Logger.get('main');
 	{
 		const client = new DeisClient();
 		const results = await client.queryAll();
-		ChileVaccinations.write(results);
-		ChileVaccinationsType.write(results);
+		Writers.write(results);
 		console.log(generateMessage(results));
 	}
 	catch (e)
