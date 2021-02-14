@@ -1,11 +1,12 @@
 
 # COVID-19 Vaccination Data
 
+- All files are updated daily
+- Source: [DEIS](https://deis.minsal.cl/)
+
 ## chile-vaccination.csv
 
-This file includes data about the total of vaccines reported by [DEIS](https://deis.minsal.cl/).
-
-This file is updated daily (around 00:00 UTC).
+Vaccines by region and dose
 
 ### Columns
 
@@ -15,4 +16,18 @@ This file is updated daily (around 00:00 UTC).
 
 ### Values
 
-The value of each cell is the total-to-date.
+The value of each cell is the total-to-date
+
+## chile-vaccination-type.csv
+
+Vaccines by type and dose
+
+### Columns
+
+- **Type:** Vaccine type (eg: Pfizer, Sinovac)
+- **Dose:** "*First*" or "*Second*"
+- **Dates:** Other columns are dates in ISO format
+
+### Values
+
+The value of each cell is the total-to-date
