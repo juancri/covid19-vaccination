@@ -3,6 +3,7 @@ import DeisClient from './deis/DeisClient';
 import ChileVaccinations from './csv/ChileVaccinations';
 import ChileVaccinationsType from './csv/ChileVaccinationsType';
 import generateMessage from './util/generateMessage';
+import logger from './util/Logger';
 
 (async() =>
 {
@@ -17,6 +18,6 @@ import generateMessage from './util/generateMessage';
 	}
 	catch (e)
 	{
-		console.log(e);
+		logger.error('General error', e);
 	}
 })();

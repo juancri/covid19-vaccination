@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { DeisCredentials, DeisResult, DeisResults } from '../Types';
 import DeisAuthScrapper from './DeisAuthScraper';
+import logger from '../util/Logger';
 
 const BASE_URL = 'https://informesdeis.minsal.cl/reportData/jobs?indexStrings=true&embeddedData=true&wait=30';
 
@@ -45,10 +46,11 @@ export default class DeisClient
 
 	public async queryAll(): Promise<DeisResults>
 	{
+		await this.init();
 		const results: DeisResults = {};
 		for (const payloadName of VALID_PAYLOADS)
 		{
-			console.log(`Loading ${payloadName}...`);
+			logger.debug(`Loading ${payloadName}...`);
 			const result = await this.query(payloadName);
 			results[payloadName] = result;
 		}
