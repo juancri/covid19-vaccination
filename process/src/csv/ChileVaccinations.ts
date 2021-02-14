@@ -31,7 +31,7 @@ const REGION_RESULTS: Map<string, string> = new Map([
 	['doses-magallanes', 'Magallanes'],
 ]);
 
-export default class ChileVaccinationsWriter
+export default class ChileVaccinations
 {
 	public static write(results: DeisResults): void
 	{
@@ -45,10 +45,10 @@ export default class ChileVaccinationsWriter
 
 		// Create rows
 		const rows = [
-			...ChileVaccinationsWriter.getRows('Total', totalResult, minDate, maxDate),
+			...ChileVaccinations.getRows('Total', totalResult, minDate, maxDate),
 			...Array
 				.from(REGION_RESULTS.entries())
-				.flatMap(entry => ChileVaccinationsWriter.getRows(
+				.flatMap(entry => ChileVaccinations.getRows(
 					entry[1], results[entry[0]], minDate, maxDate))
 		];
 
@@ -59,15 +59,15 @@ export default class ChileVaccinationsWriter
 	private static getRows(name: string, result: DeisResult,
 		minDate: number, maxDate: number): Row[]
 	{
-		const data: DoseData[] = ChileVaccinationsWriter.getDoseData(result);
+		const data: DoseData[] = ChileVaccinations.getDoseData(result);
 		const first: Row = { Region: name, Dose: 'First' };
 		const second: Row = { Region: name, Dose: 'Second' };
 		for (let dateNumber = minDate; dateNumber <= maxDate; dateNumber++)
 		{
 			const date = DeisDateConverter.convert(dateNumber);
 			const isoDate = date.toISODate();
-			first[isoDate] = ChileVaccinationsWriter.getValue(data, dateNumber, 0);
-			second[isoDate] = ChileVaccinationsWriter.getValue(data, dateNumber, 1);
+			first[isoDate] = ChileVaccinations.getValue(data, dateNumber, 0);
+			second[isoDate] = ChileVaccinations.getValue(data, dateNumber, 1);
 		}
 
 		return [first, second];

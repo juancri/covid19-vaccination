@@ -1,8 +1,8 @@
 
 import DeisClient from './deis/DeisClient';
-import ChileVaccinationsWriter from './csv/ChileVaccinationsWriter';
-import MessageGenerator from './MessageGenerator';
-import ChileVaccinationsTypeWriter from './csv/ChileVaccinationsTypeWriter';
+import ChileVaccinations from './csv/ChileVaccinations';
+import ChileVaccinationsType from './csv/ChileVaccinationsType';
+import generateMessage from './util/generateMessage';
 
 (async() =>
 {
@@ -11,9 +11,9 @@ import ChileVaccinationsTypeWriter from './csv/ChileVaccinationsTypeWriter';
 		// const rows = CsvLoader.load();
 		const client = new DeisClient();
 		const results = await client.queryAll();
-		ChileVaccinationsWriter.write(results);
-		ChileVaccinationsTypeWriter.write(results);
-		console.log(MessageGenerator.generate(results));
+		ChileVaccinations.write(results);
+		ChileVaccinationsType.write(results);
+		console.log(generateMessage(results));
 	}
 	catch (e)
 	{

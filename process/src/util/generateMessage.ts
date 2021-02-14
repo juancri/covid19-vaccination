@@ -3,13 +3,13 @@ import { DateTime } from 'luxon';
 import formatNumber from 'format-number';
 import * as Enumerable from 'linq';
 
-import { DeisResult, DeisResults } from './Types';
+import { DeisResult, DeisResults } from '../Types';
 
 const TOTAL_POPULATION = 15_000_000;
 const INTEGER_FORMAT = formatNumber({ integerSeparator: '.' });
 const PERCENTAGE_FORMAT = formatNumber({ decimal: ',', truncate: 2 });
 
-export default class MessageGenerator
+class MessageGenerator
 {
 	public static generate(results: DeisResults): string
 	{
@@ -43,3 +43,5 @@ export default class MessageGenerator
 			.sum();
 	}
 }
+
+export default MessageGenerator.generate;

@@ -12,7 +12,7 @@ interface DoseData
 	value: number
 }
 
-export default class ChileVaccinationsTypeWriter
+export default class ChileVaccinationsType
 {
 	public static write(results: DeisResults): void
 	{
@@ -24,9 +24,9 @@ export default class ChileVaccinationsTypeWriter
 		const minDate = dates.min();
 		const maxDate = dates.max();
 		const rows = [
-			...ChileVaccinationsTypeWriter.getRows('Total', dosesResult, minDate, maxDate),
-			...ChileVaccinationsTypeWriter.getRows('Pfizer', results['pfizer'], minDate, maxDate),
-			...ChileVaccinationsTypeWriter.getRows('Sinovac', results['sinovac'], minDate, maxDate),
+			...ChileVaccinationsType.getRows('Total', dosesResult, minDate, maxDate),
+			...ChileVaccinationsType.getRows('Pfizer', results['pfizer'], minDate, maxDate),
+			...ChileVaccinationsType.getRows('Sinovac', results['sinovac'], minDate, maxDate),
 		];
 
 		// Write
@@ -36,15 +36,15 @@ export default class ChileVaccinationsTypeWriter
 	private static getRows(name: string, result: DeisResult,
 		minDate: number, maxDate: number): Row[]
 	{
-		const data: DoseData[] = ChileVaccinationsTypeWriter.getDoseData(result);
+		const data: DoseData[] = ChileVaccinationsType.getDoseData(result);
 		const first: Row = { Type: name, Dose: 'First' };
 		const second: Row = { Type: name, Dose: 'Second' };
 		for (let dateNumber = minDate; dateNumber <= maxDate; dateNumber++)
 		{
 			const date = DeisDateConverter.convert(dateNumber);
 			const isoDate = date.toISODate();
-			first[isoDate] = ChileVaccinationsTypeWriter.getValue(data, dateNumber, 0);
-			second[isoDate] = ChileVaccinationsTypeWriter.getValue(data, dateNumber, 1);
+			first[isoDate] = ChileVaccinationsType.getValue(data, dateNumber, 0);
+			second[isoDate] = ChileVaccinationsType.getValue(data, dateNumber, 1);
 		}
 
 		return [first, second];
