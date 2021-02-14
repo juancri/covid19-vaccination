@@ -1,0 +1,413 @@
+{
+	"@element": "SASReport",
+	"xmlns": "http://www.sas.com/sasreportmodel/bird-4.2.4",
+	"nextUniqueNameIndex": 6939,
+	"dataDefinitions": [
+		{
+			"@element": "ParentDataDefinition",
+			"name": "dd4629",
+			"businessItems": [
+				{
+					"name": "bi4626",
+					"base": "bi3907",
+					"@element": "RelationalDataItem"
+				},
+				{
+					"name": "bi4628",
+					"base": "bi3904",
+					"@element": "RelationalDataItem"
+				},
+				{
+					"name": "bi4627",
+					"base": "bi3906",
+					"@element": "RelationalDataItem"
+				}
+			],
+			"source": "ds3902",
+			"childQueryRelationshipType": "independent",
+			"dataDefinitionList": [
+				{
+					"@element": "DataDefinition",
+					"name": "dd4630",
+					"type": "multidimensional",
+					"multidimensionalQueryList": [
+						{
+							"detail": false,
+							"axes": [
+								{
+									"@element": "Query_Axis",
+									"type": "column",
+									"itemList": [
+										"bi4626",
+										"bi4627"
+									]
+								},
+								{
+									"@element": "Query_Axis",
+									"type": "row",
+									"itemList": [
+										"bi4628"
+									]
+								}
+							],
+							"@element": "MultidimensionalQuery",
+							"columnSortItems": [
+								{
+									"sortDirection": "ascending",
+									"@element": "SortItem",
+									"reference": "bi4626"
+								},
+								{
+									"sortDirection": "ascending",
+									"@element": "SortItem",
+									"reference": "bi4627"
+								}
+							]
+						}
+					],
+					"source": "ds3902",
+					"resultDefinitions": [
+						{
+							"@element": "ResultDefinition",
+							"name": "dd4625",
+							"purpose": "primary",
+							"maxRowsBehavior": "truncate",
+							"maxRowsLookup": "graphDefault"
+						}
+					]
+				}
+			]
+		}
+	],
+	"dataSources": [
+		{
+			"@element": "DataSource",
+			"name": "ds3902",
+			"label": "VACUNA_DIARIA_COVID",
+			"type": "relational",
+			"casResource": {
+				"@element": "CasResource",
+				"server": "cas-shared-default",
+				"library": "ReportesExternos",
+				"table": "VACUNA_DIARIA_COVID",
+				"locale": "es_ES"
+			},
+			"businessItemFolder": {
+				"@element": "BusinessItemFolder",
+				"items": [
+					{
+						"name": "bi3907",
+						"label": "Fecha inmunización",
+						"format": "DDMMYY8",
+						"xref": "FECHA_INMUNIZACION",
+						"@element": "DataItem"
+					},
+					{
+						"name": "bi3904",
+						"format": "COMMA11.",
+						"xref": "CANTIDAD",
+						"@element": "DataItem"
+					},
+					{
+						"name": "bi3906",
+						"xref": "Dosis",
+						"@element": "DataItem"
+					},
+					{
+						"name": "bi3905",
+						"label": "Comuna",
+						"xref": "COMUNA",
+						"@element": "DataItem"
+					},
+					{
+						"name": "bi3908",
+						"label": "Región Ocurrencia",
+						"xref": "REGION_CORTO",
+						"@element": "DataItem"
+					},
+					{
+						"name": "bi3903",
+						"label": "Laboratorio",
+						"xref": "CAMP",
+						"@element": "DataItem"
+					}
+				]
+			}
+		}
+	],
+	"customSorts": [
+		{
+			"@element": "CustomSort",
+			"name": "cs2943",
+			"type": "string",
+			"valueList": [
+				{
+					"@element": "Sort_Value",
+					"value": "Personal de salud"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "P. Servicios esenciales del estado"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "P. en centros cerrados"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "P. Servicios infraestructura crítica"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Funcionarios Públicos"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Población Sana"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Población vulnerable"
+				}
+			]
+		},
+		{
+			"@element": "CustomSort",
+			"name": "cs3731",
+			"type": "string",
+			"valueList": [
+				{
+					"@element": "Sort_Value",
+					"value": " Arica y Parinacota"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Tarapacá"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Antofagasta"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Atacama"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Coquimbo"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Valparaíso"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Metropolitana  Santiago"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Libertador B. O'Higgins"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Maule"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Ñuble"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Bíobío"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " La Araucanía"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Los Ríos"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Los Lagos"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Aisén Gral. C. Ibáñez Campo"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Magallanes y  La Antártica Chilena"
+				}
+			]
+		},
+		{
+			"@element": "CustomSort",
+			"name": "cs4923",
+			"type": "string",
+			"valueList": [
+				{
+					"@element": "Sort_Value",
+					"value": "Menor 18"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "18 - 39"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "40 - 49"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "50 - 59"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "60 - 69"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "70 - 72"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "73 - 74"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "75 - 77"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "78 - 80"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "81 - 84"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "85 - 86"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "87 - 89"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "90 y más"
+				}
+			]
+		},
+		{
+			"@element": "CustomSort",
+			"name": "cs4925",
+			"type": "string",
+			"valueList": [
+				{
+					"@element": "Sort_Value",
+					"value": "16-17"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "18 - 39"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "40 - 49"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "50 - 59"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "60 y más"
+				}
+			]
+		},
+		{
+			"@element": "CustomSort",
+			"name": "cs6216",
+			"type": "string",
+			"valueList": [
+				{
+					"@element": "Sort_Value",
+					"value": "15-17"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "18-39"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "40-49"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "50-59"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "60-69"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "70-72"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "73-74"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "75-77"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "78-80"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "81-84"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "85-86"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "87-89"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "90 y más"
+				}
+			]
+		}
+	],
+	"sasReportState": {
+		"@element": "SASReportState",
+		"data": {
+			"@element": "Data_State",
+			"queryRequests": [
+				{
+					"@element": "queryRequest",
+					"data": "dd4629",
+					"dataLevel": "custom",
+					"expressions": [
+						{
+							"@element": "expression",
+							"type": "filter",
+							"dataStage": "detail",
+							"containedValue": "or(eq(${bi3903},'Campaña SARS-CoV-2 (Pfizer)'),eq(${bi3903},'Campaña SARS-CoV-2 (Sinovac)'))"
+						}
+					]
+				}
+			]
+		},
+		"date": "2021-02-13T23:32:15.054Z"
+	}
+}

@@ -5,35 +5,30 @@
 	"dataDefinitions": [
 		{
 			"@element": "ParentDataDefinition",
-			"name": "dd4422",
+			"name": "dd4629",
 			"businessItems": [
 				{
-					"name": "bi4417",
-					"base": "bi2331",
+					"name": "bi4626",
+					"base": "bi3907",
 					"@element": "RelationalDataItem"
 				},
 				{
-					"name": "bi4419",
-					"base": "bi2335",
+					"name": "bi4628",
+					"base": "bi3904",
 					"@element": "RelationalDataItem"
 				},
 				{
-					"name": "bi4420",
-					"base": "bi2336",
-					"@element": "RelationalDataItem"
-				},
-				{
-					"name": "bi4421",
-					"base": "bi3706",
+					"name": "bi4627",
+					"base": "bi3906",
 					"@element": "RelationalDataItem"
 				}
 			],
-			"source": "ds2322",
+			"source": "ds3902",
 			"childQueryRelationshipType": "independent",
 			"dataDefinitionList": [
 				{
 					"@element": "DataDefinition",
-					"name": "dd4423",
+					"name": "dd4630",
 					"type": "multidimensional",
 					"multidimensionalQueryList": [
 						{
@@ -43,16 +38,15 @@
 									"@element": "Query_Axis",
 									"type": "column",
 									"itemList": [
-										"bi4417"
+										"bi4626",
+										"bi4627"
 									]
 								},
 								{
 									"@element": "Query_Axis",
 									"type": "row",
 									"itemList": [
-										"bi4419",
-										"bi4420",
-										"bi4421"
+										"bi4628"
 									]
 								}
 							],
@@ -61,16 +55,21 @@
 								{
 									"sortDirection": "ascending",
 									"@element": "SortItem",
-									"reference": "bi4417"
+									"reference": "bi4626"
+								},
+								{
+									"sortDirection": "ascending",
+									"@element": "SortItem",
+									"reference": "bi4627"
 								}
 							]
 						}
 					],
-					"source": "ds2322",
+					"source": "ds3902",
 					"resultDefinitions": [
 						{
 							"@element": "ResultDefinition",
-							"name": "dd4418",
+							"name": "dd4625",
 							"purpose": "primary",
 							"maxRowsBehavior": "truncate",
 							"maxRowsLookup": "graphDefault"
@@ -83,54 +82,51 @@
 	"dataSources": [
 		{
 			"@element": "DataSource",
-			"name": "ds2322",
-			"label": "TABLA_PRINCIPAL_COVID",
+			"name": "ds3902",
+			"label": "VACUNA_DIARIA_COVID",
 			"type": "relational",
 			"casResource": {
 				"@element": "CasResource",
 				"server": "cas-shared-default",
 				"library": "ReportesExternos",
-				"table": "TABLA_PRINCIPAL_COVID",
+				"table": "VACUNA_DIARIA_COVID",
 				"locale": "es_ES"
 			},
 			"businessItemFolder": {
 				"@element": "BusinessItemFolder",
 				"items": [
 					{
-						"name": "bi2331",
+						"name": "bi3907",
+						"label": "Fecha inmunización",
+						"format": "DDMMYY8",
+						"xref": "FECHA_INMUNIZACION",
+						"@element": "DataItem"
+					},
+					{
+						"name": "bi3904",
+						"format": "COMMA11.",
+						"xref": "CANTIDAD",
+						"@element": "DataItem"
+					},
+					{
+						"name": "bi3906",
+						"xref": "Dosis",
+						"@element": "DataItem"
+					},
+					{
+						"name": "bi3905",
+						"label": "Comuna",
+						"xref": "COMUNA",
+						"@element": "DataItem"
+					},
+					{
+						"name": "bi3908",
 						"label": "Región Ocurrencia",
-						"sortOn": "custom",
 						"xref": "REGION_CORTO",
-						"customSort": "cs3731",
 						"@element": "DataItem"
 					},
 					{
-						"name": "bi2335",
-						"label": "1 Dosis",
-						"format": "COMMA11.",
-						"xref": "SUM_of_CANTIDAD_DOSIS_PRIMERA",
-						"@element": "DataItem"
-					},
-					{
-						"name": "bi2336",
-						"label": "2 Dosis",
-						"format": "COMMA11.",
-						"xref": "SUM_of_CANTIDAD_DOSIS_SEGUNDA",
-						"@element": "DataItem"
-					},
-					{
-						"name": "bi3706",
-						"label": "Porcentaje de personas con esquema completo",
-						"format": "PERCENT12.1",
-						"@element": "AggregateCalculatedItem",
-						"dataType": "double",
-						"expression": {
-							"@element": "Expression",
-							"value": "cond(gt(${bi2336,raw},0),div(aggregate(sum,group,${bi2336,raw}),aggregate(sum,group,${bi2335,raw})),0)"
-						}
-					},
-					{
-						"name": "bi2323",
+						"name": "bi3903",
 						"label": "Laboratorio",
 						"xref": "CAMP",
 						"@element": "DataItem"
@@ -399,11 +395,25 @@
 			"queryRequests": [
 				{
 					"@element": "queryRequest",
-					"data": "dd4422",
-					"dataLevel": "custom"
+					"data": "dd4629",
+					"dataLevel": "custom",
+					"expressions": [
+						{
+							"@element": "expression",
+							"type": "filter",
+							"dataStage": "detail",
+							"containedValue": "eq(${bi3908},' Atacama')"
+						},
+						{
+							"@element": "expression",
+							"type": "filter",
+							"dataStage": "detail",
+							"containedValue": "or(eq(${bi3903},'Campaña SARS-CoV-2 (Pfizer)'),eq(${bi3903},'Campaña SARS-CoV-2 (Sinovac)'))"
+						}
+					]
 				}
 			]
 		},
-		"date": "2021-02-13T22:28:16.445Z"
+		"date": "2021-02-14T00:57:47.107Z"
 	}
 }

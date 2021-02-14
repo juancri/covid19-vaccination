@@ -5,17 +5,37 @@ import * as path from 'path';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
-import { DeisCredentials, DeisResult } from '../Types';
+import { DeisCredentials, DeisResult, DeisResults } from '../Types';
 import DeisAuthScrapper from './DeisAuthScraper';
 
 const BASE_URL = 'https://informesdeis.minsal.cl/reportData/jobs?indexStrings=true&embeddedData=true&wait=30';
-const PAYLOAD_1 = fs.readFileSync(path.join(__dirname, '../../payloads/1.json')).toString();
+
+const VALID_PAYLOADS: string[] = [
+	'doses',
+	'doses-arica',
+	'doses-tarapaca',
+	'doses-antofagasta',
+	'doses-atacama',
+	'doses-coquimbo',
+	'doses-valparaiso',
+	'doses-metropolitana',
+	'doses-ohiggins',
+	'doses-maule',
+	'doses-nuble',
+	'doses-biobio',
+	'doses-araucania',
+	'doses-losrios',
+	'doses-loslagos',
+	'doses-aysen',
+	'doses-magallanes',
+	'pfizer',
+	'sinovac',
+];
 
 export default class DeisClient
 {
 	private credentials: DeisCredentials | null = null;
 	private credentialsPromise: Promise<DeisCredentials>;
-	private jobId: string = uuidv4();
 	private sequence = 1;
 
 	public constructor()
@@ -23,19 +43,32 @@ export default class DeisClient
 		this.credentialsPromise = DeisAuthScrapper.getCredentials();
 	}
 
-	public async print(): Promise<void>
+	public async queryAll(): Promise<DeisResults>
 	{
-		await this.init();
-		console.log(this.credentials);
+		const results: DeisResults = {};
+		for (const payloadName of VALID_PAYLOADS)
+		{
+			console.log(`Loading ${payloadName}...`);
+			const result = await this.query(payloadName);
+			results[payloadName] = result;
+		}
+
+		return results;
 	}
 
-	public async query1(): Promise<DeisResult>
+	private async query(name: string): Promise<DeisResult>
 	{
+		const found = VALID_PAYLOADS.includes(name);
+		if (!found)
+			throw new Error(`Payload not found: ${name}`);
+
 		await this.init();
+		const payload = this.getPayload(name);
+		const url = this.getUrl();
 		const result = await axios({
 			method: 'post',
-			url: this.getUrl(),
-			data: PAYLOAD_1,
+			url: url,
+			data: payload,
 			headers: {
 				'x-csrf-token': this.credentials?.xCsrfToken,
 				'cookie': `JSESSIONID=${this.credentials?.jSessionID}`,
@@ -57,9 +90,17 @@ export default class DeisClient
 	private getUrl(): string
 	{
 		const seq = this.sequence++;
+		const jobId = uuidv4();
 		return BASE_URL +
 			`&executorId=${this.credentials?.executorID}` +
-			`&jobId=${this.jobId}` +
+			`&jobId=${jobId}` +
 			`&sequence=${seq}`;
+	}
+
+	private getPayload(name: string): string
+	{
+		const fileName = `${name}.json`;
+		const filePath = path.join(__dirname, '../../payloads', fileName);
+		return fs.readFileSync(filePath).toString();
 	}
 }

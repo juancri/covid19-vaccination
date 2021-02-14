@@ -1,8 +1,9 @@
 
 import { DateTime } from 'luxon';
 import formatNumber from 'format-number';
+import * as Enumerable from 'linq';
 
-import { Row } from './Types';
+import { DeisResult, DeisResults } from './Types';
 
 const TOTAL_POPULATION = 15_000_000;
 const INTEGER_FORMAT = formatNumber({ integerSeparator: '.' });
@@ -10,13 +11,14 @@ const PERCENTAGE_FORMAT = formatNumber({ decimal: ',', truncate: 2 });
 
 export default class MessageGenerator
 {
-	public static generate(rows: Row[]): string
+	public static generate(results: DeisResults): string
 	{
+		// Get the right result
+		const result = results['doses'];
+
 		// Add
-		const row1 = rows[0];
-		const row2 = rows[1];
-		const total1 = MessageGenerator.getTotal(row1);
-		const total2 = MessageGenerator.getTotal(row2);
+		const total1 = MessageGenerator.getTotal(result, 0);
+		const total2 = MessageGenerator.getTotal(result, 1);
 
 		// Write
 		const date = DateTime.local();
@@ -29,10 +31,15 @@ export default class MessageGenerator
 			'#Covid19Chile';
 	}
 
-	private static getTotal(row: Row): number
+	private static getTotal(result: DeisResult, dose: number): number
 	{
-		const keys = Object.keys(row);
-		const lastKey = keys[keys.length - 1];
-		return row[lastKey] as number;
+		const doses = result.data.valueList[1];
+		const values = result.data.valueList[2];
+		return Enumerable
+			.from(values)
+			.select((value, index) => ({ value, index }))
+			.where(x => doses[x.index] === dose)
+			.select(x => x.value)
+			.sum();
 	}
 }

@@ -17,4 +17,6 @@ export interface DeisResult
 	}
 }
 
+export type DeisResults = { [key: string]: DeisResult };
+
 export type Row = { [key: string]: string | number };
