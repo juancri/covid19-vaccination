@@ -2,7 +2,7 @@
 import DeisClient from './deis/DeisClient';
 import ChileVaccinationsWriter from './csv/ChileVaccinationsWriter';
 import MessageGenerator from './MessageGenerator';
-import ChileVaccinationsTypeWrite from './csv/ChileVaccinationsTypeWrite';
+import ChileVaccinationsTypeWriter from './csv/ChileVaccinationsTypeWriter';
 
 (async() =>
 {
@@ -12,7 +12,7 @@ import ChileVaccinationsTypeWrite from './csv/ChileVaccinationsTypeWrite';
 		const client = new DeisClient();
 		const results = await client.queryAll();
 		ChileVaccinationsWriter.write(results);
-		ChileVaccinationsTypeWrite.write(results);
+		ChileVaccinationsTypeWriter.write(results);
 		console.log(MessageGenerator.generate(results));
 	}
 	catch (e)
