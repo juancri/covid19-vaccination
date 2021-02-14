@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ '*' ]
 
+defaults:
+  run:
+    shell: bash
+    working-directory: process
+
 jobs:
   build:
 
@@ -22,11 +27,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: |
-        cd process
         npm install
     - run: |
         sudo apt update
+    - run: |
         sudo apt install make
     - run: |
-        cd process
         make
