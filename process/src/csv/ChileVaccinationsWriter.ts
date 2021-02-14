@@ -87,9 +87,16 @@ export default class ChileVaccinationsWriter
 
 	private static getValue(data: DoseData[], excelDate: number, dose: number): number
 	{
-		const found = data.find(x =>
-			x.excelDate === excelDate &&
-			x.dose === dose);
-		return found?.value ?? 0;
+		const found = Enumerable
+			.from(data)
+			.where(x => x.excelDate <= excelDate)
+			.where(x => x.dose === dose)
+			.select(x => x.value)
+			.toArray();
+		if (!found.length)
+			return 0;
+		return Enumerable
+			.from(found)
+			.sum();
 	}
 }
