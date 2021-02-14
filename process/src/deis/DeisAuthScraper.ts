@@ -3,7 +3,9 @@ import puppeteer, { HTTPRequest } from 'puppeteer';
 
 import { DeisCredentials } from '../Types';
 import { sleep } from '../util/sleep';
-import logger from '../util/Logger';
+import Logger from '../util/Logger';
+
+const logger = Logger.get('DeisAuthScraper');
 
 export default class DeisAuthScrapper
 {

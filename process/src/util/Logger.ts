@@ -1,23 +1,26 @@
 
 import winston from 'winston';
 
-const alignColorsAndTime = winston.format.combine(
+const container = new winston.Container();
+const transports = [ new winston.transports.Console({ level: 'silly' }) ];
+const baseFormat = winston.format.combine(
 	winston.format.colorize({ all: true }),
 	winston.format.timestamp({ format: 'YY-MM-DD HH:MM:SS' }),
 	winston.format.printf(
-		info => `[${info.level}] ${info.timestamp}: ${info.message}`
+		info => `[${info.level}] ${info.timestamp} ${info.label}: ${info.message}`
 	)
 );
 
-const logger = winston.createLogger({
-	level: 'debug',
-	transports: [
-		new (winston.transports.Console)({
+export default {
+	get(name: string): winston.Logger
+	{
+		container.add(name, {
 			format: winston.format.combine(
-				winston.format.colorize(),
-				alignColorsAndTime)
-		})
-	],
-});
-
-export default logger;
+				winston.format.label({ label: name }),
+				baseFormat,
+			),
+			transports
+		});
+		return container.get(name);
+	}
+};

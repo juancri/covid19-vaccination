@@ -7,7 +7,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { DeisCredentials, DeisResult, DeisResults } from '../Types';
 import DeisAuthScrapper from './DeisAuthScraper';
-import logger from '../util/Logger';
+import Logger from '../util/Logger';
+
+const logger = Logger.get('DeisClient');
 
 const BASE_URL = 'https://informesdeis.minsal.cl/reportData/jobs?indexStrings=true&embeddedData=true&wait=30';
 

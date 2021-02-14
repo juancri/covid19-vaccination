@@ -3,7 +3,9 @@ import DeisClient from './deis/DeisClient';
 import ChileVaccinations from './csv/ChileVaccinations';
 import ChileVaccinationsType from './csv/ChileVaccinationsType';
 import generateMessage from './util/generateMessage';
-import logger from './util/Logger';
+import Logger from './util/Logger';
+
+const logger = Logger.get('main');
 
 (async() =>
 {
