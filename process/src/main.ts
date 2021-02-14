@@ -9,7 +9,6 @@ import logger from './util/Logger';
 {
 	try
 	{
-		// const rows = CsvLoader.load();
 		const client = new DeisClient();
 		const results = await client.queryAll();
 		ChileVaccinations.write(results);
