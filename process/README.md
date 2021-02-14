@@ -3,8 +3,8 @@
 
 This program:
 
-- Converts information from a JSON file grabbed from [DEIS](https://deis.minsal.cl/)
-- Joins this information with the previous data stored in [chile-vaccination.csv](../output)
+- Downloads reports from [DEIS](https://deis.minsal.cl/)
+- Generates CSV output files (See [output](../output))
 - Prints a human-friendly summary of the vaccination process to date
 
 # Requirements
