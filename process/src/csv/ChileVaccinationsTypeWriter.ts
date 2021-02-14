@@ -3,7 +3,7 @@ import * as Enumerable from 'linq';
 
 import { DeisResult, DeisResults, Row } from '../Types';
 import DeisDateConverter from '../deis/DeisDateConverter';
-import CsvWriter from './CsvWriter';
+import writeCsv from '../util/writeCsv';
 
 interface DoseData
 {
@@ -30,7 +30,7 @@ export default class ChileVaccinationsTypeWriter
 		];
 
 		// Write
-		CsvWriter.write(rows, 'chile-vaccination-type.csv');
+		writeCsv(rows, 'chile-vaccination-type.csv');
 	}
 
 	private static getRows(name: string, result: DeisResult,
