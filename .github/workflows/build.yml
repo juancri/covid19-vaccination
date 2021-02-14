@@ -9,7 +9,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     strategy:
       matrix:
@@ -21,8 +21,12 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: cd process && npm install
-    - run: sudo apt update && sudo apt install make
-    - run: cd process && make
-      env:
-        CI: true
+    - run: |
+        cd process
+        npm install
+    - run: |
+        sudo apt update
+        sudo apt install make
+    - run: |
+        cd process
+        make

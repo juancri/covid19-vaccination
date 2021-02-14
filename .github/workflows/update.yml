@@ -2,12 +2,12 @@ name: update
 
 on:
   schedule:
-  - cron: "0 * * * *"
+  - cron: "40 * * * *"
 
 jobs:
   update:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     strategy:
       matrix:
@@ -19,10 +19,18 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: cd process && npm install
-    - run: sudo apt update && sudo apt install make
-    - run: cd process && make
-    - run: cd process && node dist/main
+    - run: |
+        cd process
+        npm install
+    - run: |
+        sudo apt update
+        sudo apt install make
+    - run: |
+        cd process
+        make
+    - run: |
+        cd process
+        node dist/main
     - uses: EndBug/add-and-commit@v7
       with:
         add: 'output'
