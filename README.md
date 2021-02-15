@@ -1,7 +1,7 @@
 
 ## COVID-19 Vaccination
 
-[![build](https://github.com/juancri/covid19-vaccination/workflows/build/badge.svg)](https://github.com/juancri/covid19-vaccination/actions?query=workflow%3Abuild) [![update](https://github.com/juancri/covid19-vaccination/workflows/update/badge.svg)](https://github.com/juancri/covid19-vaccination/actions?query=workflow%3Aupdate)
+[![build](https://github.com/juancri/covid19-vaccination/workflows/build/badge.svg)](https://github.com/juancri/covid19-vaccination/actions?query=workflow%3Abuild) [![update](https://github.com/juancri/covid19-vaccination/workflows/update/badge.svg)](https://github.com/juancri/covid19-vaccination/actions?query=workflow%3Aupdate) [![CodeQL](https://github.com/juancri/covid19-vaccination/workflows/CodeQL/badge.svg)](https://github.com/juancri/covid19-vaccination/actions?query=workflow%3ACodeQL)
 
 This repository includes code and data related with the vaccination process against SARS-CoV-2 in Chile:
 
