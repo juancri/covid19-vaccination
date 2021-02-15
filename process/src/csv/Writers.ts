@@ -1,6 +1,8 @@
 
 import ChileVaccinations from './ChileVaccinations';
 import ChileVaccinationsType from './ChileVaccinationsType';
+import ChileVaccinationsGroups from './ChileVaccinationsGroups';
+import ChileVaccinationsAges from './ChileVaccinationsAges';
 import { DeisResults } from '../Types';
 import Logger from '../util/Logger';
 
@@ -10,6 +12,8 @@ type Writer = (results: DeisResults) => void;
 const WRITERS: Map<string, Writer> = new Map([
 	['ChileVaccinations', ChileVaccinations.write],
 	['ChileVaccinationsType', ChileVaccinationsType.write],
+	['ChileVaccinationsGroups', ChileVaccinationsGroups.write],
+	['ChileVaccinationsAges', ChileVaccinationsAges.write],
 ]);
 
 export default class Writers

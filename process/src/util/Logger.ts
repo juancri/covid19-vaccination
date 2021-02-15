@@ -4,6 +4,7 @@ import winston from 'winston';
 const container = new winston.Container();
 const transports = [ new winston.transports.Console({ level: 'silly' }) ];
 const baseFormat = winston.format.combine(
+	winston.format.errors({ stack: true }),
 	winston.format.colorize({ all: true }),
 	winston.format.timestamp(),
 	winston.format.printf(

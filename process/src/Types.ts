@@ -14,7 +14,11 @@ export interface DeisResult
 	data:
 	{
 		valueList: ValueList[]
-	}
+	},
+	stringTable:
+	{
+		valueList: string[]
+	},
 }
 
 export type DeisResults = { [key: string]: DeisResult };

@@ -33,6 +33,8 @@ const VALID_PAYLOADS: string[] = [
 	'doses-magallanes',
 	'pfizer',
 	'sinovac',
+	'groups',
+	'ages',
 ];
 
 export default class DeisClient

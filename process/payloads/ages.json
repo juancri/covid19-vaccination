@@ -1,0 +1,437 @@
+{
+	"@element": "SASReport",
+	"xmlns": "http://www.sas.com/sasreportmodel/bird-4.2.4",
+	"nextUniqueNameIndex": 6939,
+	"dataDefinitions": [
+		{
+			"@element": "ParentDataDefinition",
+			"name": "dd6178",
+			"businessItems": [
+				{
+					"name": "bi6181",
+					"base": "bi6168",
+					"@element": "RelationalDataItem"
+				},
+				{
+					"name": "bi6183",
+					"base": "bi6169",
+					"@element": "RelationalDataItem"
+				},
+				{
+					"name": "bi6185",
+					"base": "bi6172",
+					"@element": "RelationalDataItem"
+				},
+				{
+					"name": "bi6187",
+					"base": "bi6170",
+					"@element": "RelationalDataItem"
+				},
+				{
+					"name": "bi6192",
+					"base": "bi6190",
+					"@element": "RelationalDataItem"
+				},
+				{
+					"name": "bi6194",
+					"base": "bi6191",
+					"@element": "RelationalDataItem"
+				}
+			],
+			"source": "ds6167",
+			"childQueryRelationshipType": "independent",
+			"dataDefinitionList": [
+				{
+					"@element": "DataDefinition",
+					"name": "dd6179",
+					"type": "multidimensional",
+					"multidimensionalQueryList": [
+						{
+							"detail": false,
+							"axes": [
+								{
+									"@element": "Query_Axis",
+									"type": "column",
+									"itemList": [
+										"bi6185",
+										"bi6181",
+										"bi6192",
+										"bi6183",
+										"bi6194"
+									]
+								},
+								{
+									"@element": "Query_Axis",
+									"type": "row",
+									"itemList": [
+										"bi6187"
+									]
+								}
+							],
+							"@element": "MultidimensionalQuery",
+							"rowTotals": true,
+							"rowSubtotals": false,
+							"columnSubtotals": false,
+							"rowSortItems": [
+								{
+									"sortDirection": "ascending",
+									"@element": "SortItem",
+									"reference": "bi6187"
+								}
+							],
+							"columnTotals": true
+						}
+					],
+					"source": "ds6167",
+					"resultDefinitions": [
+						{
+							"@element": "ResultDefinition",
+							"name": "dd6180",
+							"purpose": "primary",
+							"maxRowsBehavior": "noData",
+							"maxRowsLookup": "crosstab"
+						}
+					]
+				}
+			]
+		}
+	],
+	"dataSources": [
+		{
+			"@element": "DataSource",
+			"name": "ds6167",
+			"label": "POB_INE",
+			"type": "relational",
+			"casResource": {
+				"@element": "CasResource",
+				"server": "cas-shared-default",
+				"library": "ReportesExternos",
+				"table": "POB_INE",
+				"locale": "es_419"
+			},
+			"businessItemFolder": {
+				"@element": "BusinessItemFolder",
+				"items": [
+					{
+						"name": "bi6168",
+						"format": "COMMA11.",
+						"xref": "Cantidad 1° dosis",
+						"@element": "DataItem"
+					},
+					{
+						"name": "bi6169",
+						"format": "COMMA11.",
+						"xref": "Cantidad 2° dosis",
+						"@element": "DataItem"
+					},
+					{
+						"name": "bi6172",
+						"xref": "Población Objetivo",
+						"@element": "DataItem"
+					},
+					{
+						"name": "bi6170",
+						"sortOn": "custom",
+						"xref": "Grupo edad",
+						"customSort": "cs6216",
+						"@element": "DataItem"
+					},
+					{
+						"name": "bi6190",
+						"label": "Avance de Cobertura vacunación",
+						"format": "PERCENT12.2",
+						"@element": "AggregateCalculatedItem",
+						"dataType": "double",
+						"expression": {
+							"@element": "Expression",
+							"value": "div(aggregate(sum,group,${bi6168,raw}),aggregate(sum,group,${bi6172,raw}))"
+						}
+					},
+					{
+						"name": "bi6191",
+						"label": "Cobertura de vacunación",
+						"format": "PERCENT12.2",
+						"@element": "AggregateCalculatedItem",
+						"dataType": "double",
+						"expression": {
+							"@element": "Expression",
+							"value": "div(aggregate(sum,group,${bi6169,raw}),aggregate(sum,group,${bi6172,raw}))"
+						}
+					},
+					{
+						"name": "bi6171",
+						"xref": "Nombre Region",
+						"@element": "DataItem"
+					}
+				]
+			}
+		}
+	],
+	"customSorts": [
+		{
+			"@element": "CustomSort",
+			"name": "cs2943",
+			"type": "string",
+			"valueList": [
+				{
+					"@element": "Sort_Value",
+					"value": "Personal de salud"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "P. Servicios esenciales del estado"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "P. en centros cerrados"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "P. Servicios infraestructura crítica"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Funcionarios Públicos"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Población Sana"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Población vulnerable"
+				}
+			]
+		},
+		{
+			"@element": "CustomSort",
+			"name": "cs3731",
+			"type": "string",
+			"valueList": [
+				{
+					"@element": "Sort_Value",
+					"value": " Arica y Parinacota"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Tarapacá"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Antofagasta"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Atacama"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Coquimbo"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Valparaíso"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Metropolitana  Santiago"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Libertador B. O'Higgins"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Maule"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Ñuble"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Bíobío"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " La Araucanía"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Los Ríos"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Los Lagos"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Aisén Gral. C. Ibáñez Campo"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Magallanes y  La Antártica Chilena"
+				}
+			]
+		},
+		{
+			"@element": "CustomSort",
+			"name": "cs4923",
+			"type": "string",
+			"valueList": [
+				{
+					"@element": "Sort_Value",
+					"value": "Menor 18"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "18 - 39"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "40 - 49"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "50 - 59"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "60 - 69"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "70 - 72"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "73 - 74"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "75 - 77"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "78 - 80"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "81 - 84"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "85 - 86"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "87 - 89"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "90 y más"
+				}
+			]
+		},
+		{
+			"@element": "CustomSort",
+			"name": "cs4925",
+			"type": "string",
+			"valueList": [
+				{
+					"@element": "Sort_Value",
+					"value": "16-17"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "18 - 39"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "40 - 49"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "50 - 59"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "60 y más"
+				}
+			]
+		},
+		{
+			"@element": "CustomSort",
+			"name": "cs6216",
+			"type": "string",
+			"valueList": [
+				{
+					"@element": "Sort_Value",
+					"value": "15-17"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "18-39"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "40-49"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "50-59"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "60-69"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "70-72"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "73-74"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "75-77"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "78-80"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "81-84"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "85-86"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "87-89"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "90 y más"
+				}
+			]
+		}
+	],
+	"sasReportState": {
+		"@element": "SASReportState",
+		"data": {
+			"@element": "Data_State",
+			"queryRequests": [
+				{
+					"@element": "queryRequest",
+					"data": "dd6178",
+					"dataLevel": "custom"
+				}
+			]
+		},
+		"date": "2021-02-15T06:23:22.563Z"
+	}
+}
