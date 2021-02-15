@@ -1,7 +1,7 @@
 
 # COVID-19 Vaccination Data
 
-- All files are updated daily
+- All files are updated automatically every hour ([update workflow](https://github.com/juancri/covid19-vaccination/actions?query=workflow%3Aupdate))
 - Source: [DEIS](https://deis.minsal.cl/)
 
 ## chile-vaccination.csv
