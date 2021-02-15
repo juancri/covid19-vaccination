@@ -17,6 +17,7 @@ const logger = Logger.get('main');
 	}
 	catch (e)
 	{
-		logger.error('General error', e);
+		logger.error('General error');
+		logger.error(e.stack);
 	}
 })();
