@@ -2,9 +2,9 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ master ]
+    branches: [ '*' ]
   pull_request:
-    branches: [ master ]
+    branches: [ '*' ]
   schedule:
     - cron: '44 20 * * 6'
 
@@ -18,11 +18,6 @@ jobs:
     name: Analyze
     runs-on: ubuntu-20.04
 
-    strategy:
-      fail-fast: false
-      matrix:
-        language: [ 'javascript' ]
-
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -30,12 +25,12 @@ jobs:
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
       with:
-        languages: ${{ matrix.language }}
+        languages: javascript
 
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js 12.x
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 12.x
 
     - run: |
         npm install
