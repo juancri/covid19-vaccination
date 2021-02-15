@@ -1,9 +1,9 @@
 
-import { DateTime } from 'luxon';
 import formatNumber from 'format-number';
 import * as Enumerable from 'linq';
 
 import { DeisResult, DeisResults } from '../Types';
+import DeisDateConverter from '../deis/DeisDateConverter';
 
 const TOTAL_POPULATION = 15_000_000;
 const INTEGER_FORMAT = formatNumber({ integerSeparator: '.' });
@@ -21,7 +21,10 @@ class MessageGenerator
 		const total2 = MessageGenerator.getTotal(result, 1);
 
 		// Write
-		const date = DateTime.local();
+		const dateNumber = Enumerable
+			.from(result.data.valueList[0])
+			.max();
+		const date = DeisDateConverter.convert(dateNumber);
 		const firstRatio = total1 / TOTAL_POPULATION * 100;
 		const secondRatio = total2 / TOTAL_POPULATION * 100;
 		return `Vacunación en Chile hasta el ${date.toFormat('dd/MM/yyyy')}:\n\n` +
