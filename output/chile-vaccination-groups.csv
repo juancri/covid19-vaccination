@@ -1,17 +1,17 @@
 Group,Dose,2021-02-15,2021-02-16
-Total,First,2092453,2092453
-Total,Second,54819,54819
-Desconocido,First,67,67
-Desconocido,Second,41,41
-Personal de salud,First,485475,485475
-Personal de salud,Second,53832,53832
-Personas en centros cerrados,First,33075,33075
-Personas en centros cerrados,Second,931,931
-Personas Servicios esenciales del estado,First,191449,191449
-Personas Servicios esenciales del estado,Second,15,15
-Personas Servicios infraestructura crítica,First,42699,42699
-Personas Servicios infraestructura crítica,Second,0,0
-Población Sana,First,28298,28298
+Total,First,2092453,2182326
+Total,Second,54819,55017
+Desconocido,First,67,2
+Desconocido,Second,41,0
+Personal de salud,First,485475,490972
+Personal de salud,Second,53832,53911
+Personas en centros cerrados,First,33075,33589
+Personas en centros cerrados,Second,931,1050
+Personas Servicios esenciales del estado,First,191449,201574
+Personas Servicios esenciales del estado,Second,15,51
+Personas Servicios infraestructura crítica,First,42699,51152
+Personas Servicios infraestructura crítica,Second,0,5
+Población Sana,First,28298,29826
 Población Sana,Second,0,0
-Población vulnerable,First,1311390,1311390
+Población vulnerable,First,1311390,1375211
 Población vulnerable,Second,0,0
