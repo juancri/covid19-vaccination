@@ -31,3 +31,31 @@ Vaccines by type and dose
 ### Values
 
 The value of each cell is the total-to-date
+
+## chile-vaccination-ages.csv
+
+Vaccinations by population age and dose
+
+### Columns
+
+- **Age:** Population age range
+- **Dose:** "*First*" or "*Second*"
+- **Dates:** Other columns are dates in ISO format
+
+### Values
+
+The value of each cell is the total-to-date
+
+## chile-vaccination-groups.csv
+
+Vaccinations by population risk groups
+
+### Columns
+
+- **Group:** Population risk group
+- **Dose:** "*First*" or "*Second*"
+- **Dates:** Other columns are dates in ISO format
+
+### Values
+
+The value of each cell is the total-to-date
