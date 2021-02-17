@@ -1,7 +1,7 @@
 
 import * as Enumerable from 'linq';
 
-import { Row } from '../Types';
+import { Row } from '../../Types';
 
 export default function joinCsv(rows1: Row[], rows2: Row[], joiners: string[]): Row[]
 {

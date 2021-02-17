@@ -3,7 +3,7 @@ import * as Enumerable from 'linq';
 
 import { DeisResult, DeisResults, Row } from '../Types';
 import DeisDateConverter from '../deis/DeisDateConverter';
-import writeCsv from '../util/writeCsv';
+import writeCsv from '../util/csv/write';
 
 interface DoseData
 {

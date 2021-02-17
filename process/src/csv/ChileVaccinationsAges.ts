@@ -3,9 +3,9 @@ import * as Enumerable from 'linq';
 import { DateTime } from 'luxon';
 
 import { DeisResult, DeisResults, Row } from '../Types';
-import joinCsv from '../util/joinCsv';
-import readCsv from '../util/readCsv';
-import writeCsv from '../util/writeCsv';
+import joinCsv from '../util/csv/join';
+import readCsv from '../util/csv/read';
+import writeCsv from '../util/csv/write';
 
 interface Temp
 {
