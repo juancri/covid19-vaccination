@@ -1,5 +1,5 @@
 
-import Writers from './csv/Writers';
+import Writers from './writers/Writers';
 import DeisClient from './deis/DeisClient';
 import generateMessage from './util/generateMessage';
 import Logger from './util/Logger';

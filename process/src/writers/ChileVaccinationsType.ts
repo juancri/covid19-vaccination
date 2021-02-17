@@ -1,5 +1,5 @@
 
-import * as Enumerable from 'linq';
+import Enumerable from 'linq';
 
 import { DeisResult, DeisResults, Row } from '../Types';
 import DeisDateConverter from '../deis/DeisDateConverter';
@@ -12,14 +12,13 @@ interface DoseData
 	value: number
 }
 
+const ZERO_ENUMERABLE = Enumerable.from([0]);
+
 export default class ChileVaccinationsType
 {
 	public static write(results: DeisResults): void
 	{
-		// Get the right results
 		const dosesResult = results['doses'];
-
-		// Get date range
 		const dates = Enumerable.from(dosesResult.data.valueList[0]);
 		const minDate = dates.min();
 		const maxDate = dates.max();
@@ -29,7 +28,6 @@ export default class ChileVaccinationsType
 			...ChileVaccinationsType.getRows('Sinovac', results['sinovac'], minDate, maxDate),
 		];
 
-		// Write
 		writeCsv(rows, 'chile-vaccination-type.csv');
 	}
 
@@ -64,16 +62,12 @@ export default class ChileVaccinationsType
 
 	private static getValue(data: DoseData[], excelDate: number, dose: number): number
 	{
-		const found = Enumerable
+		return Enumerable
 			.from(data)
 			.where(x => x.excelDate <= excelDate)
 			.where(x => x.dose === dose)
 			.select(x => x.value)
-			.toArray();
-		if (!found.length)
-			return 0;
-		return Enumerable
-			.from(found)
+			.concat(ZERO_ENUMERABLE)
 			.sum();
 	}
 }

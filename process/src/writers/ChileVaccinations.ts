@@ -1,5 +1,5 @@
 
-import * as Enumerable from 'linq';
+import Enumerable from 'linq';
 
 import { DeisResult, DeisResults, Row } from '../Types';
 import DeisDateConverter from '../deis/DeisDateConverter';
@@ -31,19 +31,16 @@ const REGION_RESULTS: Map<string, string> = new Map([
 	['doses-magallanes', 'Magallanes'],
 ]);
 
+const ZERO_ENUMERABLE = Enumerable.from([0]);
+
 export default class ChileVaccinations
 {
 	public static write(results: DeisResults): void
 	{
-		// Get the right results
 		const totalResult = results['doses'];
-
-		// Get date range
 		const dates = Enumerable.from(totalResult.data.valueList[0]);
 		const minDate = dates.min();
 		const maxDate = dates.max();
-
-		// Create rows
 		const rows = [
 			...ChileVaccinations.getRows('Total', totalResult, minDate, maxDate),
 			...Array
@@ -52,7 +49,6 @@ export default class ChileVaccinations
 					entry[1], results[entry[0]], minDate, maxDate))
 		];
 
-		// Write
 		writeCsv(rows, 'chile-vaccination.csv');
 	}
 
@@ -87,16 +83,12 @@ export default class ChileVaccinations
 
 	private static getValue(data: DoseData[], excelDate: number, dose: number): number
 	{
-		const found = Enumerable
+		return Enumerable
 			.from(data)
 			.where(x => x.excelDate <= excelDate)
 			.where(x => x.dose === dose)
 			.select(x => x.value)
-			.toArray();
-		if (!found.length)
-			return 0;
-		return Enumerable
-			.from(found)
+			.concat(ZERO_ENUMERABLE)
 			.sum();
 	}
 }

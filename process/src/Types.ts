@@ -21,6 +21,12 @@ export interface DeisResult
 	},
 }
 
+export interface Writer
+{
+	name: string;
+	write(results: DeisResults): void;
+}
+
 export type DeisResults = { [key: string]: DeisResult };
 
 export type Row = { [key: string]: string | number };

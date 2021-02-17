@@ -1,5 +1,5 @@
 
-import * as Enumerable from 'linq';
+import Enumerable from 'linq';
 import { DateTime } from 'luxon';
 
 import { DeisResult, DeisResults, Row } from '../Types';
@@ -17,22 +17,18 @@ interface Temp
 const TIME_ZONE = 'America/Santiago';
 const TODAY = DateTime.utc().setZone(TIME_ZONE);
 const TODAY_ISO = TODAY.toISODate();
-const FILE_NAME = 'chile-vaccination-ages.csv';
+const FILE_NAME = 'chile-vaccination-groups.csv';
 
-export default class ChileVaccinationsAges
+export default class ChileVaccinationsGroups
 {
 	public static write(results: DeisResults): void
 	{
-		// Get input
-		const result = results['ages'];
-		const groupNames = ChileVaccinationsAges.getGroupNames(result);
-
-		// Load previous
+		const result = results['groups'];
+		const groupNames = ChileVaccinationsGroups.getGroupNames(result);
 		const previous = readCsv(FILE_NAME);
+		const current: Row[] = ChileVaccinationsGroups.getRows(groupNames, result);
+		const joined = joinCsv(previous, current, ['Group', 'Dose']);
 
-		// Write
-		const current: Row[] = ChileVaccinationsAges.getRows(groupNames, result);
-		const joined = joinCsv(previous, current, ['Age', 'Dose']);
 		writeCsv(joined, FILE_NAME);
 	}
 
@@ -51,27 +47,27 @@ export default class ChileVaccinationsAges
 	private static getRows(groupNames: Map<number, string>, result: DeisResult): Row[]
 	{
 		const groupIndexes = Enumerable.from(result.data.valueList[0]);
-		const firstDoses = Enumerable.from(result.data.valueList[2]);
-		const secondDoses = Enumerable.from(result.data.valueList[3]);
+		const firstDoses = Enumerable.from(result.data.valueList[1]);
+		const secondDoses = Enumerable.from(result.data.valueList[2]);
 
 		return groupIndexes
 			.zip(firstDoses, secondDoses,
 				(groupIndex: number, first: number|string, second: number|string) => ({
 					group: groupNames.get(groupIndex),
-					first: ChileVaccinationsAges.convert(first),
-					second: ChileVaccinationsAges.convert(second)
+					first: ChileVaccinationsGroups.convert(first),
+					second: ChileVaccinationsGroups.convert(second)
 				}))
 			.selectMany(x =>
 			{
 				const x2 = x as Temp;
 				return [
 					{
-						Age: x2.group,
+						Group: x2.group,
 						Dose: 'First',
 						[TODAY_ISO]: x2.first
 					},
 					{
-						Age: x2.group,
+						Group: x2.group,
 						Dose: 'Second',
 						[TODAY_ISO]: x2.second
 					}
