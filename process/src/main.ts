@@ -1,7 +1,6 @@
 
 import Writers from './writers/Writers';
 import DeisClient from './deis/DeisClient';
-import generateMessage from './util/generateMessage';
 import Logger from './util/Logger';
 
 const logger = Logger.get('main');
@@ -11,9 +10,9 @@ const logger = Logger.get('main');
 	try
 	{
 		const client = new DeisClient();
-		const results = await client.queryAll();
+		const payloads = Writers.getRequiredPayloads();
+		const results = await client.queryAll(payloads);
 		Writers.write(results);
-		console.log(generateMessage(results));
 	}
 	catch (e)
 	{

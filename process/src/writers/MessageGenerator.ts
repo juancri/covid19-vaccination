@@ -9,9 +9,14 @@ const TOTAL_POPULATION = 15_000_000;
 const INTEGER_FORMAT = formatNumber({ integerSeparator: '.' });
 const PERCENTAGE_FORMAT = formatNumber({ decimal: ',', truncate: 2 });
 
-class MessageGenerator
+export default class MessageGenerator
 {
-	public static generate(results: DeisResults): string
+	public static getRequiredPayloads(): string[]
+	{
+		return ['doses'];
+	}
+
+	public static write(results: DeisResults): void
 	{
 		// Get the right result
 		const result = results['doses'];
@@ -27,11 +32,12 @@ class MessageGenerator
 		const date = DeisDateConverter.convert(dateNumber);
 		const firstRatio = total1 / TOTAL_POPULATION * 100;
 		const secondRatio = total2 / TOTAL_POPULATION * 100;
-		return `Vacunación en Chile hasta el ${date.toFormat('dd/MM/yyyy')}:\n\n` +
+		const message = `Vacunación en Chile hasta el ${date.toFormat('dd/MM/yyyy')}:\n\n` +
 			`Primera dosis: ${INTEGER_FORMAT(total1)} personas (${PERCENTAGE_FORMAT(firstRatio)}%)\n` +
 			`Segunda dosis: ${INTEGER_FORMAT(total2)} personas (${PERCENTAGE_FORMAT(secondRatio)}%)\n\n` +
 			'(Calculado en base a un universo a vacunar de 15 millones de personas)\n\n' +
 			'#Covid19Chile';
+		console.log(message);
 	}
 
 	private static getTotal(result: DeisResult, dose: number): number
@@ -46,5 +52,3 @@ class MessageGenerator
 			.sum();
 	}
 }
-
-export default MessageGenerator.generate;

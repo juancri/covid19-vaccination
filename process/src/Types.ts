@@ -24,6 +24,7 @@ export interface DeisResult
 export interface Writer
 {
 	name: string;
+	getRequiredPayloads(): string[];
 	write(results: DeisResults): void;
 }
 

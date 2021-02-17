@@ -21,6 +21,11 @@ const FILE_NAME = 'chile-vaccination-ages.csv';
 
 export default class ChileVaccinationsAges
 {
+	public static getRequiredPayloads(): string[]
+	{
+		return ['ages'];
+	}
+
 	public static write(results: DeisResults): void
 	{
 		const result = results['ages'];

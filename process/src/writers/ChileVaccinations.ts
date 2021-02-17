@@ -35,6 +35,11 @@ const ZERO_ENUMERABLE = Enumerable.from([0]);
 
 export default class ChileVaccinations
 {
+	public static getRequiredPayloads(): string[]
+	{
+		return Array.from(REGION_RESULTS.keys());
+	}
+
 	public static write(results: DeisResults): void
 	{
 		const totalResult = results['doses'];

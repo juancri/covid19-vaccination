@@ -16,6 +16,11 @@ const ZERO_ENUMERABLE = Enumerable.from([0]);
 
 export default class ChileVaccinationsType
 {
+	public static getRequiredPayloads(): string[]
+	{
+		return ['doses', 'pfizer', 'sinovac'];
+	}
+
 	public static write(results: DeisResults): void
 	{
 		const dosesResult = results['doses'];

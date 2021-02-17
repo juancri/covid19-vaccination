@@ -21,6 +21,11 @@ const FILE_NAME = 'chile-vaccination-groups.csv';
 
 export default class ChileVaccinationsGroups
 {
+	public static getRequiredPayloads(): string[]
+	{
+		return ['groups'];
+	}
+
 	public static write(results: DeisResults): void
 	{
 		const result = results['groups'];

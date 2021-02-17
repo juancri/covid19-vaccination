@@ -13,30 +13,6 @@ const logger = Logger.get('DeisClient');
 
 const BASE_URL = 'https://informesdeis.minsal.cl/reportData/jobs?indexStrings=true&embeddedData=true&wait=30';
 
-const VALID_PAYLOADS: string[] = [
-	'doses',
-	'doses-arica',
-	'doses-tarapaca',
-	'doses-antofagasta',
-	'doses-atacama',
-	'doses-coquimbo',
-	'doses-valparaiso',
-	'doses-metropolitana',
-	'doses-ohiggins',
-	'doses-maule',
-	'doses-nuble',
-	'doses-biobio',
-	'doses-araucania',
-	'doses-losrios',
-	'doses-loslagos',
-	'doses-aysen',
-	'doses-magallanes',
-	'pfizer',
-	'sinovac',
-	'groups',
-	'ages',
-];
-
 export default class DeisClient
 {
 	private credentials: DeisCredentials | null = null;
@@ -48,11 +24,11 @@ export default class DeisClient
 		this.credentialsPromise = DeisAuthScrapper.getCredentials();
 	}
 
-	public async queryAll(): Promise<DeisResults>
+	public async queryAll(payloads: string[]): Promise<DeisResults>
 	{
 		await this.init();
 		const results: DeisResults = {};
-		for (const payloadName of VALID_PAYLOADS)
+		for (const payloadName of payloads)
 		{
 			logger.debug(`Loading ${payloadName}...`);
 			const result = await this.query(payloadName);
@@ -64,10 +40,6 @@ export default class DeisClient
 
 	private async query(name: string): Promise<DeisResult>
 	{
-		const found = VALID_PAYLOADS.includes(name);
-		if (!found)
-			throw new Error(`Payload not found: ${name}`);
-
 		await this.init();
 		const payload = this.getPayload(name);
 		const url = this.getUrl();
