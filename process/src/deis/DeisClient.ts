@@ -5,9 +5,10 @@ import * as path from 'path';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
-import { DeisCredentials, DeisResult, DeisResults } from '../Types';
+import { DeisCredentials, DeisResult } from '../Types';
 import DeisAuthScrapper from './DeisAuthScraper';
 import Logger from '../util/Logger';
+import DeisResults from './DeisResults';
 
 const logger = Logger.get('DeisClient');
 
@@ -27,15 +28,15 @@ export default class DeisClient
 	public async queryAll(payloads: string[]): Promise<DeisResults>
 	{
 		await this.init();
-		const results: DeisResults = {};
+		const results = new Map<string, DeisResult>();
 		for (const payloadName of payloads)
 		{
 			logger.debug(`Loading ${payloadName}...`);
 			const result = await this.query(payloadName);
-			results[payloadName] = result;
+			results.set(payloadName, result);
 		}
 
-		return results;
+		return new DeisResults(results);
 	}
 
 	private async query(name: string): Promise<DeisResult>

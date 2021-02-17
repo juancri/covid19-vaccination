@@ -1,9 +1,10 @@
 
 import Enumerable from 'linq';
 
-import { DeisResult, DeisResults, Row } from '../Types';
+import { DeisResult, Row } from '../Types';
 import DeisDateConverter from '../deis/DeisDateConverter';
 import writeCsv from '../util/csv/write';
+import DeisResults from '../deis/DeisResults';
 
 interface DoseData
 {
@@ -23,14 +24,14 @@ export default class ChileVaccinationsType
 
 	public static write(results: DeisResults): void
 	{
-		const dosesResult = results['doses'];
+		const dosesResult = results.get('doses');
 		const dates = Enumerable.from(dosesResult.data.valueList[0]);
 		const minDate = dates.min();
 		const maxDate = dates.max();
 		const rows = [
 			...ChileVaccinationsType.getRows('Total', dosesResult, minDate, maxDate),
-			...ChileVaccinationsType.getRows('Pfizer', results['pfizer'], minDate, maxDate),
-			...ChileVaccinationsType.getRows('Sinovac', results['sinovac'], minDate, maxDate),
+			...ChileVaccinationsType.getRows('Pfizer', results.get('pfizer'), minDate, maxDate),
+			...ChileVaccinationsType.getRows('Sinovac', results.get('sinovac'), minDate, maxDate),
 		];
 
 		writeCsv(rows, 'chile-vaccination-type.csv');

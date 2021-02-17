@@ -1,8 +1,9 @@
 
 import Enumerable from 'linq';
 import { DateTime } from 'luxon';
+import DeisResults from '../deis/DeisResults';
 
-import { DeisResult, DeisResults, Row } from '../Types';
+import { DeisResult, Row } from '../Types';
 import joinCsv from '../util/csv/join';
 import readCsv from '../util/csv/read';
 import writeCsv from '../util/csv/write';
@@ -28,7 +29,7 @@ export default class ChileVaccinationsGroups
 
 	public static write(results: DeisResults): void
 	{
-		const result = results['groups'];
+		const result = results.get('groups');
 		const groupNames = ChileVaccinationsGroups.getGroupNames(result);
 		const previous = readCsv(FILE_NAME);
 		const current: Row[] = ChileVaccinationsGroups.getRows(groupNames, result);

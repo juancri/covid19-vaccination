@@ -2,8 +2,9 @@
 import formatNumber from 'format-number';
 import * as Enumerable from 'linq';
 
-import { DeisResult, DeisResults } from '../Types';
+import { DeisResult } from '../Types';
 import DeisDateConverter from '../deis/DeisDateConverter';
+import DeisResults from '../deis/DeisResults';
 
 const TOTAL_POPULATION = 15_000_000;
 const INTEGER_FORMAT = formatNumber({ integerSeparator: '.' });
@@ -19,7 +20,7 @@ export default class MessageGenerator
 	public static write(results: DeisResults): void
 	{
 		// Get the right result
-		const result = results['doses'];
+		const result = results.get('doses');
 
 		// Add
 		const total1 = MessageGenerator.getTotal(result, 0);

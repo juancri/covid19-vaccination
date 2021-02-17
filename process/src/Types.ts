@@ -1,3 +1,4 @@
+import DeisResults from './deis/DeisResults';
 
 export type ValueList = (number | string)[];
 
@@ -27,7 +28,5 @@ export interface Writer
 	getRequiredPayloads(): string[];
 	write(results: DeisResults): void;
 }
-
-export type DeisResults = { [key: string]: DeisResult };
 
 export type Row = { [key: string]: string | number };
