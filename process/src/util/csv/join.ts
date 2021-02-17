@@ -15,7 +15,7 @@ export default function joinCsv(rows1: Row[], rows2: Row[], joiners: string[]): 
 		.select(g => {
 			const items = g.group.toArray();
 			if (items.length === 1)
-				return [items[0]];
+				return items[0];
 			if (items.length === 2)
 				return { ...items[0], ...items[1] };
 			throw new Error(`Invalid number of items: ${items.length} for key: ${g.key}`);
