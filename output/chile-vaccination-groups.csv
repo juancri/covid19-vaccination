@@ -1,8 +1,8 @@
 Group,Dose,2021-02-15,2021-02-16
 Total,First,2092453,2320697
 Total,Second,54819,55028
-"{""Group"":""Desconocido"",""Dose"":""First"",""2021-02-15"":""67"",""2021-02-16"":""2""}"
-"{""Group"":""Desconocido"",""Dose"":""Second"",""2021-02-15"":""41"",""2021-02-16"":""0""}"
+Desconocido,First,67,2
+Desconocido,Second,41,0
 Personal de salud,First,485475,500615
 Personal de salud,Second,53832,53912
 Personas en centros cerrados,First,33075,34811
