@@ -18,5 +18,6 @@ const logger = Logger.get('main');
 	{
 		logger.error('General error');
 		logger.error(e.stack);
+		process.exit(1);
 	}
 })();
