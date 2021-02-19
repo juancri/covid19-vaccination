@@ -3,6 +3,7 @@ name: update
 on:
   schedule:
   - cron: "55 * * * *"
+  workflow_dispatch:
 
 defaults:
   run:
