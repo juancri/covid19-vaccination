@@ -9,7 +9,7 @@ This program:
 
 # Requirements
 
-- [Node 12.x](https://nodejs.org/en/)
+- [Node 14.x](https://nodejs.org)
 - [make](https://www.gnu.org/software/make/)
 
 ## Setup

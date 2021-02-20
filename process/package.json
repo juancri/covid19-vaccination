@@ -9,8 +9,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@types/luxon": "^1.25.3",
-    "@types/node": "^14.14.28",
+    "@types/luxon": "^1.26.0",
+    "@types/node": "^14.14.31",
     "@types/uuid": "^8.3.0",
     "@types/puppeteer": "^5.4.3",
     "@typescript-eslint/eslint-plugin": "^4.15.1",
