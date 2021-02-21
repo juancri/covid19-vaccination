@@ -1,7 +1,7 @@
 {
 	"@element": "SASReport",
 	"xmlns": "http://www.sas.com/sasreportmodel/bird-4.2.4",
-	"nextUniqueNameIndex": 6939,
+	"nextUniqueNameIndex": 9449,
 	"dataDefinitions": [
 		{
 			"@element": "ParentDataDefinition",
@@ -83,13 +83,13 @@
 		{
 			"@element": "DataSource",
 			"name": "ds3902",
-			"label": "VACUNA_DIARIA_COVID",
+			"label": "VACUNA_DIARIA_TABLERO",
 			"type": "relational",
 			"casResource": {
 				"@element": "CasResource",
 				"server": "cas-shared-default",
 				"library": "ReportesExternos",
-				"table": "VACUNA_DIARIA_COVID",
+				"table": "VACUNA_DIARIA_TABLERO",
 				"locale": "es_ES"
 			},
 			"businessItemFolder": {
@@ -116,7 +116,7 @@
 					{
 						"name": "bi3905",
 						"label": "Comuna",
-						"xref": "COMUNA",
+						"xref": "Comuna",
 						"@element": "DataItem"
 					},
 					{
@@ -147,15 +147,15 @@
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "P. Servicios esenciales del estado"
+					"value": "Personas en centros cerrados"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "P. en centros cerrados"
+					"value": "Personas Servicios esenciales del estado"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "P. Servicios infraestructura crítica"
+					"value": "Personas Servicios infraestructura crítica"
 				},
 				{
 					"@element": "Sort_Value",
@@ -249,7 +249,7 @@
 			"valueList": [
 				{
 					"@element": "Sort_Value",
-					"value": "Menor 18"
+					"value": "15-17"
 				},
 				{
 					"@element": "Sort_Value",
@@ -265,39 +265,7 @@
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "60 - 69"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "70 - 72"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "73 - 74"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "75 - 77"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "78 - 80"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "81 - 84"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "85 - 86"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "87 - 89"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "90 y más"
+					"value": "60 y más"
 				}
 			]
 		},
@@ -335,27 +303,31 @@
 			"valueList": [
 				{
 					"@element": "Sort_Value",
-					"value": "15-17"
+					"value": "15-20"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "18-39"
+					"value": "21-30"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "40-49"
+					"value": "31-40"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "50-59"
+					"value": "41-50"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "60-69"
+					"value": "51-60"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "70-72"
+					"value": "61-70"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "71-72"
 				},
 				{
 					"@element": "Sort_Value",
@@ -367,23 +339,82 @@
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "78-80"
+					"value": "78-79"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "81-84"
+					"value": "80 y más"
+				}
+			]
+		},
+		{
+			"@element": "CustomSort",
+			"name": "cs9060",
+			"type": "string",
+			"valueList": [
+				{
+					"@element": "Sort_Value",
+					"value": " Arica y Parinacota"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "85-86"
+					"value": " Tarapacá"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "87-89"
+					"value": " Antofagasta"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "90 y más"
+					"value": " Atacama"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Coquimbo"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Valparaíso"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Metropolitana  Santiago"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Libertador B. O'Higgins"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Maule"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Ñuble"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Bíobío"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " La Araucanía"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Los Ríos"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Los Lagos"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Aisén Gral. C. Ibáñez Campo"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Magallanes y  La Antártica Chilena"
 				}
 			]
 		}
@@ -408,6 +439,14 @@
 				}
 			]
 		},
-		"date": "2021-02-13T23:05:47.779Z"
+		"date": "2021-02-21T09:42:57.284Z",
+		"parameters": [
+			{
+				"@element": "Parameter_State",
+				"prompt": "pr7832",
+				"dataType": "double",
+				"containedValue": "20"
+			}
+		]
 	}
 }
