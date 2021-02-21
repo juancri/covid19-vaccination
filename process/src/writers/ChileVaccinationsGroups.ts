@@ -22,6 +22,11 @@ const FILE_NAME = 'chile-vaccination-groups.csv';
 
 export default class ChileVaccinationsGroups
 {
+	public static isEnabled(): boolean
+	{
+		return false;
+	}
+
 	public static getRequiredPayloads(): string[]
 	{
 		return ['groups'];

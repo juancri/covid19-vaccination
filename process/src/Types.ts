@@ -25,6 +25,7 @@ export interface DeisResult
 export interface Writer
 {
 	name: string;
+	isEnabled?(): boolean;
 	getRequiredPayloads(): string[];
 	write(results: DeisResults): void;
 }

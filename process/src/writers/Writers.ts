@@ -26,6 +26,7 @@ export default class Writers
 	public static getRequiredPayloads(): string[] {
 		return Enumerable
 			.from(WRITERS)
+			.where(w => !w.isEnabled || w.isEnabled())
 			.selectMany(w => w.getRequiredPayloads())
 			.distinct()
 			.orderBy(p => p)
@@ -36,8 +37,15 @@ export default class Writers
 	{
 		for (const writer of WRITERS)
 		{
-			logger.info(`Writing ${writer.name}...`);
-			writer.write(results);
+			if (!writer.isEnabled || writer.isEnabled())
+			{
+				logger.info(`Writing ${writer.name}...`);
+				writer.write(results);
+			}
+			else
+			{
+				logger.info(`Skipping: ${writer.name}...`);
+			}
 		}
 	}
 }
