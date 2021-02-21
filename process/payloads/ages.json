@@ -1,7 +1,7 @@
 {
 	"@element": "SASReport",
 	"xmlns": "http://www.sas.com/sasreportmodel/bird-4.2.4",
-	"nextUniqueNameIndex": 6939,
+	"nextUniqueNameIndex": 9449,
 	"dataDefinitions": [
 		{
 			"@element": "ParentDataDefinition",
@@ -100,13 +100,13 @@
 		{
 			"@element": "DataSource",
 			"name": "ds6167",
-			"label": "POB_INE",
+			"label": "COBERTURAS_TABLERO",
 			"type": "relational",
 			"casResource": {
 				"@element": "CasResource",
 				"server": "cas-shared-default",
 				"library": "ReportesExternos",
-				"table": "POB_INE",
+				"table": "COBERTURAS_TABLERO",
 				"locale": "es_419"
 			},
 			"businessItemFolder": {
@@ -114,32 +114,37 @@
 				"items": [
 					{
 						"name": "bi6168",
+						"label": "1° Dosis Residencia",
 						"format": "COMMA11.",
-						"xref": "Cantidad 1° dosis",
+						"xref": "1aDOSIS_RES",
 						"@element": "DataItem"
 					},
 					{
 						"name": "bi6169",
+						"label": "2° Dosis Residencia",
 						"format": "COMMA11.",
-						"xref": "Cantidad 2° dosis",
+						"xref": "2aDOSIS_RES",
 						"@element": "DataItem"
 					},
 					{
 						"name": "bi6172",
-						"xref": "Población Objetivo",
+						"label": "Población Objetivo",
+						"format": "COMMA12.",
+						"xref": "POBLACION",
 						"@element": "DataItem"
 					},
 					{
 						"name": "bi6170",
+						"label": "Grupo edad",
 						"sortOn": "custom",
-						"xref": "Grupo edad",
+						"xref": "GRUPO_ETARIO",
 						"customSort": "cs6216",
 						"@element": "DataItem"
 					},
 					{
 						"name": "bi6190",
-						"label": "Avance de Cobertura vacunación",
-						"format": "PERCENT12.2",
+						"label": "% de personas con al menos 1 Dosis",
+						"format": "PERCENT12.1",
 						"@element": "AggregateCalculatedItem",
 						"dataType": "double",
 						"expression": {
@@ -149,8 +154,8 @@
 					},
 					{
 						"name": "bi6191",
-						"label": "Cobertura de vacunación",
-						"format": "PERCENT12.2",
+						"label": "% de personas con 1° y 2° Dosis",
+						"format": "PERCENT12.1",
 						"@element": "AggregateCalculatedItem",
 						"dataType": "double",
 						"expression": {
@@ -160,7 +165,14 @@
 					},
 					{
 						"name": "bi6171",
-						"xref": "Nombre Region",
+						"label": "Región",
+						"xref": "NOMBRE_REGION",
+						"@element": "DataItem"
+					},
+					{
+						"name": "bi7487",
+						"label": "Comuna de residencia",
+						"xref": "NOMBRE_COMUNA",
 						"@element": "DataItem"
 					}
 				]
@@ -179,15 +191,15 @@
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "P. Servicios esenciales del estado"
+					"value": "Personas en centros cerrados"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "P. en centros cerrados"
+					"value": "Personas Servicios esenciales del estado"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "P. Servicios infraestructura crítica"
+					"value": "Personas Servicios infraestructura crítica"
 				},
 				{
 					"@element": "Sort_Value",
@@ -281,7 +293,7 @@
 			"valueList": [
 				{
 					"@element": "Sort_Value",
-					"value": "Menor 18"
+					"value": "15-17"
 				},
 				{
 					"@element": "Sort_Value",
@@ -297,39 +309,7 @@
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "60 - 69"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "70 - 72"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "73 - 74"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "75 - 77"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "78 - 80"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "81 - 84"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "85 - 86"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "87 - 89"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "90 y más"
+					"value": "60 y más"
 				}
 			]
 		},
@@ -367,27 +347,31 @@
 			"valueList": [
 				{
 					"@element": "Sort_Value",
-					"value": "15-17"
+					"value": "15-20"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "18-39"
+					"value": "21-30"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "40-49"
+					"value": "31-40"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "50-59"
+					"value": "41-50"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "60-69"
+					"value": "51-60"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "70-72"
+					"value": "61-70"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "71-72"
 				},
 				{
 					"@element": "Sort_Value",
@@ -399,23 +383,82 @@
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "78-80"
+					"value": "78-79"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "81-84"
+					"value": "80 y más"
+				}
+			]
+		},
+		{
+			"@element": "CustomSort",
+			"name": "cs9060",
+			"type": "string",
+			"valueList": [
+				{
+					"@element": "Sort_Value",
+					"value": " Arica y Parinacota"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "85-86"
+					"value": " Tarapacá"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "87-89"
+					"value": " Antofagasta"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "90 y más"
+					"value": " Atacama"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Coquimbo"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Valparaíso"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Metropolitana  Santiago"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Libertador B. O'Higgins"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Maule"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Ñuble"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Bíobío"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " La Araucanía"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Los Ríos"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Los Lagos"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Aisén Gral. C. Ibáñez Campo"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Magallanes y  La Antártica Chilena"
 				}
 			]
 		}
@@ -432,6 +475,14 @@
 				}
 			]
 		},
-		"date": "2021-02-15T06:23:22.563Z"
+		"date": "2021-02-21T09:46:53.774Z",
+		"parameters": [
+			{
+				"@element": "Parameter_State",
+				"prompt": "pr7832",
+				"dataType": "double",
+				"containedValue": "20"
+			}
+		]
 	}
 }
