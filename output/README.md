@@ -18,6 +18,20 @@ Vaccines by region and dose
 
 The value of each cell is the total-to-date
 
+## chile-vaccination-comunas.csv
+
+Vaccines by comuna and dose
+
+### Columns
+
+- **Comuna:** Comuna
+- **Dose:** "*First*" or "*Second*"
+- **Dates:** Other columns are dates in ISO format
+
+### Values
+
+The value of each cell is the total-to-date
+
 ## chile-vaccination-type.csv
 
 Vaccines by type and dose
