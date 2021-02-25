@@ -1,0 +1,99 @@
+
+import Enumerable from 'linq';
+
+import DeisClient from '../deis/DeisClient';
+import DeisResults from '../deis/DeisResults';
+import { Row, ValueList } from '../Types';
+import Logger from '../util/Logger';
+import writeCsv from '../util/csv/write';
+import DeisDateConverter from '../deis/DeisDateConverter';
+
+interface DoseData
+{
+	excelDate: number,
+	dose: number,
+	value: number
+}
+
+const logger = Logger.get('ChileVaccinationsComunas');
+
+const ZERO_ENUMERABLE = Enumerable.from([0]);
+
+export default class ChileVaccinationsComunas
+{
+	public static getRequiredPayloads(): string[]
+	{
+		return ['comunas'];
+	}
+
+	public static async write(client: DeisClient, results: DeisResults): Promise<void>
+	{
+		const comunasResult = results.get('comunas');
+		const comunas = comunasResult.stringTable.valueList;
+		const payload = JSON.parse(client.getPayload('doses-comuna'));
+		const data = new Map<string, ValueList[]>();
+		for (const comuna of comunas)
+		{
+			logger.debug(`Querying ${comuna}...`);
+			const queryComuna = comuna.replace('\'', '\'\'');
+			const queryValue = `eq(\${bi3905},'${queryComuna}')`;
+			payload.sasReportState.data.queryRequests[0].expressions[0].containedValue = queryValue;
+			const payloadString = JSON.stringify(payload);
+			const result = await client.queryPayload(payloadString);
+			data.set(comuna, result.data.valueList);
+		}
+
+		const dates = Enumerable
+			.from(Array.from(data.values()) as ValueList[][])
+			.select(v => v[0])
+			.selectMany(v => v);
+		const minDate = dates.min();
+		const maxDate = dates.max();
+		const rows = Array
+			.from(comunas)
+			.flatMap(comuna => ChileVaccinationsComunas.getRows(
+				comuna, data.get(comuna) ?? [], minDate, maxDate));
+
+		writeCsv(rows, 'chile-vaccination-comunas.csv');
+	}
+
+	private static getRows(name: string, valueList: ValueList[],
+		minDate: number, maxDate: number): Row[]
+	{
+		const data: DoseData[] = ChileVaccinationsComunas.getDoseData(valueList);
+		const first: Row = { Region: name, Dose: 'First' };
+		const second: Row = { Region: name, Dose: 'Second' };
+		for (let dateNumber = minDate; dateNumber <= maxDate; dateNumber++)
+		{
+			const date = DeisDateConverter.convert(dateNumber);
+			const isoDate = date.toISODate();
+			first[isoDate] = ChileVaccinationsComunas.getValue(data, dateNumber, 0);
+			second[isoDate] = ChileVaccinationsComunas.getValue(data, dateNumber, 1);
+		}
+
+		return [first, second];
+	}
+
+	private static getDoseData(valueList: ValueList[]): DoseData[]
+	{
+		const dates = Enumerable.from(valueList[0]);
+		const doses = Enumerable.from(valueList[1]);
+		const values = Enumerable.from(valueList[2]);
+		return dates
+			.zip(doses, values,
+				(excelDate: number, dose: number, value: number) =>
+					({ excelDate, dose, value }))
+			.toArray() as DoseData[];
+	}
+
+	private static getValue(data: DoseData[], excelDate: number, dose: number): number
+	{
+		return Enumerable
+			.from(data)
+			.where(x => x.excelDate <= excelDate)
+			.where(x => x.dose === dose)
+			.select(x => x.value)
+			.concat(ZERO_ENUMERABLE)
+			.sum();
+	}
+}

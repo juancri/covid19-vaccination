@@ -39,10 +39,15 @@ export default class DeisClient
 		return new DeisResults(results);
 	}
 
-	private async query(name: string): Promise<DeisResult>
+	public getPayload(name: string): string
 	{
-		await this.init();
-		const payload = this.getPayload(name);
+		const fileName = `${name}.json`;
+		const filePath = path.join(__dirname, '../../payloads', fileName);
+		return fs.readFileSync(filePath).toString();
+	}
+
+	public async queryPayload(payload: string): Promise<DeisResult>
+	{
 		const url = this.getUrl();
 		const result = await axios({
 			method: 'post',
@@ -56,6 +61,14 @@ export default class DeisClient
 		});
 		const content = JSON.parse(result.data.results.content);
 		return content.results[0] as DeisResult;
+	}
+
+	private async query(name: string): Promise<DeisResult>
+	{
+		await this.init();
+		const payload = this.getPayload(name);
+		const result = await this.queryPayload(payload);
+		return result;
 	}
 
 	private async init(): Promise<void>
@@ -76,10 +89,4 @@ export default class DeisClient
 			`&sequence=${seq}`;
 	}
 
-	private getPayload(name: string): string
-	{
-		const fileName = `${name}.json`;
-		const filePath = path.join(__dirname, '../../payloads', fileName);
-		return fs.readFileSync(filePath).toString();
-	}
 }

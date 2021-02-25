@@ -12,7 +12,7 @@ const logger = Logger.get('main');
 		const client = new DeisClient();
 		const payloads = Writers.getRequiredPayloads();
 		const results = await client.queryAll(payloads);
-		Writers.write(results);
+		await Writers.write(client, results);
 	}
 	catch (e)
 	{

@@ -1,6 +1,7 @@
 
 import Enumerable from 'linq';
 import { DateTime } from 'luxon';
+import DeisClient from '../deis/DeisClient';
 import DeisResults from '../deis/DeisResults';
 
 import { DeisResult, Row } from '../Types';
@@ -32,7 +33,7 @@ export default class ChileVaccinationsGroups
 		return ['groups'];
 	}
 
-	public static write(results: DeisResults): void
+	public static write(_client: DeisClient, results: DeisResults): void
 	{
 		const result = results.get('groups');
 		const groupNames = ChileVaccinationsGroups.getGroupNames(result);

@@ -1,3 +1,4 @@
+import DeisClient from './deis/DeisClient';
 import DeisResults from './deis/DeisResults';
 
 export type ValueList = (number | string)[];
@@ -27,7 +28,7 @@ export interface Writer
 	name: string;
 	isEnabled?(): boolean;
 	getRequiredPayloads(): string[];
-	write(results: DeisResults): void;
+	write(client: DeisClient, results: DeisResults): void | Promise<void>;
 }
 
 export type Row = { [key: string]: string | number };

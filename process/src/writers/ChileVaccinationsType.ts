@@ -5,6 +5,7 @@ import { DeisResult, Row } from '../Types';
 import DeisDateConverter from '../deis/DeisDateConverter';
 import writeCsv from '../util/csv/write';
 import DeisResults from '../deis/DeisResults';
+import DeisClient from '../deis/DeisClient';
 
 interface DoseData
 {
@@ -22,7 +23,7 @@ export default class ChileVaccinationsType
 		return ['doses', 'pfizer', 'sinovac'];
 	}
 
-	public static write(results: DeisResults): void
+	public static write(_client: DeisClient, results: DeisResults): void
 	{
 		const dosesResult = results.get('doses');
 		const dates = Enumerable.from(dosesResult.data.valueList[0]);

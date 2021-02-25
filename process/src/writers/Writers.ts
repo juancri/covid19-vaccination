@@ -6,6 +6,8 @@ import Logger from '../util/Logger';
 import DeisResults from '../deis/DeisResults';
 
 import ChileVaccinations from './ChileVaccinations';
+import ChileVaccinationsComunas from './ChileVaccinationsComunas';
+import DeisClient from '../deis/DeisClient';
 import ChileVaccinationsType from './ChileVaccinationsType';
 import ChileVaccinationsGroups from './ChileVaccinationsGroups';
 import ChileVaccinationsAges from './ChileVaccinationsAges';
@@ -18,6 +20,7 @@ const WRITERS: Writer[] = [
 	ChileVaccinationsType,
 	ChileVaccinationsGroups,
 	ChileVaccinationsAges,
+	ChileVaccinationsComunas,
 	MessageGenerator,
 ];
 
@@ -33,14 +36,14 @@ export default class Writers
 			.toArray();
 	}
 
-	public static write(results: DeisResults): void
+	public static async write(client: DeisClient, results: DeisResults): Promise<void>
 	{
 		for (const writer of WRITERS)
 		{
 			if (!writer.isEnabled || writer.isEnabled())
 			{
 				logger.info(`Writing ${writer.name}...`);
-				writer.write(results);
+				await Promise.resolve(writer.write(client, results));
 			}
 			else
 			{
