@@ -61,8 +61,8 @@ export default class ChileVaccinationsComunas
 		minDate: number, maxDate: number): Row[]
 	{
 		const data: DoseData[] = ChileVaccinationsComunas.getDoseData(valueList);
-		const first: Row = { Region: name, Dose: 'First' };
-		const second: Row = { Region: name, Dose: 'Second' };
+		const first: Row = { Comuna: name, Dose: 'First' };
+		const second: Row = { Comuna: name, Dose: 'Second' };
 		for (let dateNumber = minDate; dateNumber <= maxDate; dateNumber++)
 		{
 			const date = DeisDateConverter.convert(dateNumber);
