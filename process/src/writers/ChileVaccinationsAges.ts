@@ -31,9 +31,9 @@ export default class ChileVaccinationsAges
 	public static write(_client: DeisClient, results: DeisResults): void
 	{
 		const result = results.get('ages');
-		const groupNames = ChileVaccinationsAges.getGroupNames(result);
+		const groupNames = this.getGroupNames(result);
 		const previous = readCsv(FILE_NAME);
-		const current: Row[] = ChileVaccinationsAges.getRows(groupNames, result);
+		const current: Row[] = this.getRows(groupNames, result);
 		const joined = joinCsv(previous, current, ['Age', 'Dose']);
 
 		writeCsv(joined, FILE_NAME);
@@ -61,8 +61,8 @@ export default class ChileVaccinationsAges
 			.zip(firstDoses, secondDoses,
 				(groupIndex: number, first: number|string, second: number|string) => ({
 					group: groupNames.get(groupIndex),
-					first: ChileVaccinationsAges.convert(first),
-					second: ChileVaccinationsAges.convert(second)
+					first: this.convert(first),
+					second: this.convert(second)
 				}))
 			.selectMany(x =>
 			{

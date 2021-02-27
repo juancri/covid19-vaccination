@@ -17,13 +17,8 @@ const BASE_URL = 'https://informesdeis.minsal.cl/reportData/jobs?indexStrings=tr
 export default class DeisClient
 {
 	private credentials: DeisCredentials | null = null;
-	private credentialsPromise: Promise<DeisCredentials>;
+	private credentialsPromise = DeisAuthScrapper.getCredentials();
 	private sequence = 1;
-
-	public constructor()
-	{
-		this.credentialsPromise = DeisAuthScrapper.getCredentials();
-	}
 
 	public async queryAll(payloads: string[]): Promise<DeisResults>
 	{
@@ -48,6 +43,7 @@ export default class DeisClient
 
 	public async queryPayload(payload: string): Promise<DeisResult>
 	{
+		await this.init();
 		const url = this.getUrl();
 		const result = await axios({
 			method: 'post',
@@ -65,7 +61,6 @@ export default class DeisClient
 
 	private async query(name: string): Promise<DeisResult>
 	{
-		await this.init();
 		const payload = this.getPayload(name);
 		const result = await this.queryPayload(payload);
 		return result;

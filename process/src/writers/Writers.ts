@@ -40,15 +40,14 @@ export default class Writers
 	{
 		for (const writer of WRITERS)
 		{
-			if (!writer.isEnabled || writer.isEnabled())
-			{
-				logger.info(`Writing ${writer.name}...`);
-				await Promise.resolve(writer.write(client, results));
-			}
-			else
+			if (writer.isEnabled && !writer.isEnabled())
 			{
 				logger.info(`Skipping: ${writer.name}...`);
+				continue;
 			}
+
+			logger.info(`Writing ${writer.name}...`);
+			await Promise.resolve(writer.write(client, results));
 		}
 	}
 }

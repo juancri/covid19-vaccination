@@ -31,13 +31,14 @@ export default class ChileVaccinationsComunas
 		const comunasResult = results.get('comunas');
 		const comunas = comunasResult.stringTable.valueList;
 		const payload = JSON.parse(client.getPayload('doses-comuna'));
+		const firstExpression = payload.sasReportState.data.queryRequests[0].expressions[0];
 		const data = new Map<string, ValueList[]>();
 		for (const comuna of comunas)
 		{
 			logger.debug(`Querying ${comuna}...`);
 			const queryComuna = comuna.replace('\'', '\'\'');
 			const queryValue = `eq(\${bi3905},'${queryComuna}')`;
-			payload.sasReportState.data.queryRequests[0].expressions[0].containedValue = queryValue;
+			firstExpression.containedValue = queryValue;
 			const payloadString = JSON.stringify(payload);
 			const result = await client.queryPayload(payloadString);
 			data.set(comuna, result.data.valueList);
@@ -45,13 +46,12 @@ export default class ChileVaccinationsComunas
 
 		const dates = Enumerable
 			.from(Array.from(data.values()) as ValueList[][])
-			.select(v => v[0])
-			.selectMany(v => v);
+			.selectMany(v => v[0]);
 		const minDate = dates.min();
 		const maxDate = dates.max();
 		const rows = Array
 			.from(comunas)
-			.flatMap(comuna => ChileVaccinationsComunas.getRows(
+			.flatMap(comuna => this.getRows(
 				comuna, data.get(comuna) ?? [], minDate, maxDate));
 
 		writeCsv(rows, 'chile-vaccination-comunas.csv');
@@ -60,15 +60,15 @@ export default class ChileVaccinationsComunas
 	private static getRows(name: string, valueList: ValueList[],
 		minDate: number, maxDate: number): Row[]
 	{
-		const data: DoseData[] = ChileVaccinationsComunas.getDoseData(valueList);
+		const data: DoseData[] = this.getDoseData(valueList);
 		const first: Row = { Comuna: name, Dose: 'First' };
 		const second: Row = { Comuna: name, Dose: 'Second' };
 		for (let dateNumber = minDate; dateNumber <= maxDate; dateNumber++)
 		{
 			const date = DeisDateConverter.convert(dateNumber);
 			const isoDate = date.toISODate();
-			first[isoDate] = ChileVaccinationsComunas.getValue(data, dateNumber, 0);
-			second[isoDate] = ChileVaccinationsComunas.getValue(data, dateNumber, 1);
+			first[isoDate] = this.getValue(data, dateNumber, 0);
+			second[isoDate] = this.getValue(data, dateNumber, 1);
 		}
 
 		return [first, second];

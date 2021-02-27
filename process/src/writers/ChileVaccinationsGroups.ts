@@ -20,6 +20,10 @@ const TIME_ZONE = 'America/Santiago';
 const TODAY = DateTime.utc().setZone(TIME_ZONE);
 const TODAY_ISO = TODAY.toISODate();
 const FILE_NAME = 'chile-vaccination-groups.csv';
+const DEFAULT_GROUP_NAMES: [number, string][] = [
+	[-100, 'Total'],
+	[-1, 'Desconocido'],
+];
 
 export default class ChileVaccinationsGroups
 {
@@ -36,9 +40,9 @@ export default class ChileVaccinationsGroups
 	public static write(_client: DeisClient, results: DeisResults): void
 	{
 		const result = results.get('groups');
-		const groupNames = ChileVaccinationsGroups.getGroupNames(result);
+		const groupNames = this.getGroupNames(result);
 		const previous = readCsv(FILE_NAME);
-		const current: Row[] = ChileVaccinationsGroups.getRows(groupNames, result);
+		const current: Row[] = this.getRows(groupNames, result);
 		const joined = joinCsv(previous, current, ['Group', 'Dose']);
 
 		writeCsv(joined, FILE_NAME);
@@ -51,8 +55,7 @@ export default class ChileVaccinationsGroups
 				.from(result.stringTable.valueList)
 				.select((name, index) => [index, name])
 				.toArray() as [number, string][],
-			[-100, 'Total'],
-			[-1, 'Desconocido']
+			...DEFAULT_GROUP_NAMES
 		]);
 	}
 
@@ -66,8 +69,8 @@ export default class ChileVaccinationsGroups
 			.zip(firstDoses, secondDoses,
 				(groupIndex: number, first: number|string, second: number|string) => ({
 					group: groupNames.get(groupIndex),
-					first: ChileVaccinationsGroups.convert(first),
-					second: ChileVaccinationsGroups.convert(second)
+					first: this.convert(first),
+					second: this.convert(second)
 				}))
 			.selectMany(x =>
 			{

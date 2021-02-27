@@ -1,6 +1,6 @@
 
 import formatNumber from 'format-number';
-import * as Enumerable from 'linq';
+import Enumerable from 'linq';
 
 import { DeisResult } from '../Types';
 import DeisDateConverter from '../deis/DeisDateConverter';
@@ -24,8 +24,8 @@ export default class MessageGenerator
 		const result = results.get('doses');
 
 		// Add
-		const total1 = MessageGenerator.getTotal(result, 0);
-		const total2 = MessageGenerator.getTotal(result, 1);
+		const total1 = this.getTotal(result, 0);
+		const total2 = this.getTotal(result, 1);
 
 		// Write
 		const dateNumber = Enumerable

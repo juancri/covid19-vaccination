@@ -30,9 +30,9 @@ export default class ChileVaccinationsType
 		const minDate = dates.min();
 		const maxDate = dates.max();
 		const rows = [
-			...ChileVaccinationsType.getRows('Total', dosesResult, minDate, maxDate),
-			...ChileVaccinationsType.getRows('Pfizer', results.get('pfizer'), minDate, maxDate),
-			...ChileVaccinationsType.getRows('Sinovac', results.get('sinovac'), minDate, maxDate),
+			...this.getRows('Total', dosesResult, minDate, maxDate),
+			...this.getRows('Pfizer', results.get('pfizer'), minDate, maxDate),
+			...this.getRows('Sinovac', results.get('sinovac'), minDate, maxDate),
 		];
 
 		writeCsv(rows, 'chile-vaccination-type.csv');
@@ -41,15 +41,15 @@ export default class ChileVaccinationsType
 	private static getRows(name: string, result: DeisResult,
 		minDate: number, maxDate: number): Row[]
 	{
-		const data: DoseData[] = ChileVaccinationsType.getDoseData(result);
+		const data: DoseData[] = this.getDoseData(result);
 		const first: Row = { Type: name, Dose: 'First' };
 		const second: Row = { Type: name, Dose: 'Second' };
 		for (let dateNumber = minDate; dateNumber <= maxDate; dateNumber++)
 		{
 			const date = DeisDateConverter.convert(dateNumber);
 			const isoDate = date.toISODate();
-			first[isoDate] = ChileVaccinationsType.getValue(data, dateNumber, 0);
-			second[isoDate] = ChileVaccinationsType.getValue(data, dateNumber, 1);
+			first[isoDate] = this.getValue(data, dateNumber, 0);
+			second[isoDate] = this.getValue(data, dateNumber, 1);
 		}
 
 		return [first, second];

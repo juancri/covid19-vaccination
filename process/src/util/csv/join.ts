@@ -1,5 +1,5 @@
 
-import * as Enumerable from 'linq';
+import Enumerable from 'linq';
 
 import { Row } from '../../Types';
 

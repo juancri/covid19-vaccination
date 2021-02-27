@@ -49,10 +49,10 @@ export default class ChileVaccinations
 		const minDate = dates.min();
 		const maxDate = dates.max();
 		const rows = [
-			...ChileVaccinations.getRows('Total', totalResult, minDate, maxDate),
+			...this.getRows('Total', totalResult, minDate, maxDate),
 			...Array
 				.from(REGION_RESULTS.entries())
-				.flatMap(entry => ChileVaccinations.getRows(
+				.flatMap(entry => this.getRows(
 					entry[1], results.get(entry[0]), minDate, maxDate))
 		];
 
@@ -62,15 +62,15 @@ export default class ChileVaccinations
 	private static getRows(name: string, result: DeisResult,
 		minDate: number, maxDate: number): Row[]
 	{
-		const data: DoseData[] = ChileVaccinations.getDoseData(result);
+		const data: DoseData[] = this.getDoseData(result);
 		const first: Row = { Region: name, Dose: 'First' };
 		const second: Row = { Region: name, Dose: 'Second' };
 		for (let dateNumber = minDate; dateNumber <= maxDate; dateNumber++)
 		{
 			const date = DeisDateConverter.convert(dateNumber);
 			const isoDate = date.toISODate();
-			first[isoDate] = ChileVaccinations.getValue(data, dateNumber, 0);
-			second[isoDate] = ChileVaccinations.getValue(data, dateNumber, 1);
+			first[isoDate] = this.getValue(data, dateNumber, 0);
+			second[isoDate] = this.getValue(data, dateNumber, 1);
 		}
 
 		return [first, second];
