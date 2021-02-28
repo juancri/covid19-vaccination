@@ -5,7 +5,7 @@ import cloneDeep from 'lodash.clonedeep';
 
 import DeisClient from '../deis/DeisClient';
 import DeisResults from '../deis/DeisResults';
-import { Row, ValueList } from '../Types';
+import { Context, Row, ValueList } from '../Types';
 import Logger from '../util/Logger';
 import writeCsv from '../util/csv/write';
 import DeisDateConverter from '../deis/DeisDateConverter';
@@ -35,12 +35,14 @@ export default class ChileVaccinationsComunas
 		return ['doses-comunas'];
 	}
 
-	public static async write(client: DeisClient, results: DeisResults): Promise<void>
+	public static async write(context: Context, client: DeisClient, results: DeisResults): Promise<void>
 	{
 		const comunasResult = results.get('doses-comunas');
-		const comunas = comunasResult.stringTable.valueList;
+		const allComunas = comunasResult.stringTable.valueList;
+		const comunas = context.test ?
+			allComunas.slice(0, 10) :
+			allComunas;
 		const payload = JSON.parse(client.getPayload('doses-comuna'));
-
 
 		// Run with concurrency
 		const data = new Map<string, ValueList[]>();

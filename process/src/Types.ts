@@ -3,6 +3,11 @@ import DeisResults from './deis/DeisResults';
 
 export type ValueList = (number | string)[];
 
+export interface Context
+{
+	test: boolean;
+}
+
 export interface DeisCredentials
 {
 	xCsrfToken: string;
@@ -28,7 +33,7 @@ export interface Writer
 	name: string;
 	isEnabled?(): boolean;
 	getRequiredPayloads(): string[];
-	write(client: DeisClient, results: DeisResults): void | Promise<void>;
+	write(context: Context, client: DeisClient, results: DeisResults): void | Promise<void>;
 }
 
 export type Row = { [key: string]: string | number };

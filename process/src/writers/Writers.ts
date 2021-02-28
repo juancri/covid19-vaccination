@@ -1,7 +1,7 @@
 
 import Enumerable from 'linq';
 
-import { Writer } from '../Types';
+import { Context, Writer } from '../Types';
 import Logger from '../util/Logger';
 import DeisResults from '../deis/DeisResults';
 
@@ -38,7 +38,7 @@ export default class Writers
 			.toArray();
 	}
 
-	public static async write(client: DeisClient, results: DeisResults): Promise<void>
+	public static async write(context: Context, client: DeisClient, results: DeisResults): Promise<void>
 	{
 		for (const writer of WRITERS)
 		{
@@ -49,7 +49,7 @@ export default class Writers
 			}
 
 			logger.info(`Writing ${writer.name}...`);
-			await Promise.resolve(writer.write(client, results));
+			await Promise.resolve(writer.write(context, client, results));
 		}
 	}
 }

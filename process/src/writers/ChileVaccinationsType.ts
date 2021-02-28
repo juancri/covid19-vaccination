@@ -1,7 +1,7 @@
 
 import Enumerable from 'linq';
 
-import { DeisResult, Row } from '../Types';
+import { Context, DeisResult, Row } from '../Types';
 import DeisDateConverter from '../deis/DeisDateConverter';
 import writeCsv from '../util/csv/write';
 import DeisResults from '../deis/DeisResults';
@@ -23,7 +23,7 @@ export default class ChileVaccinationsType
 		return ['doses', 'pfizer', 'sinovac'];
 	}
 
-	public static write(_client: DeisClient, results: DeisResults): void
+	public static write(_context: Context, _client: DeisClient, results: DeisResults): void
 	{
 		const dosesResult = results.get('doses');
 		const dates = Enumerable.from(dosesResult.data.valueList[0]);

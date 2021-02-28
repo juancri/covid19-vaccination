@@ -4,7 +4,7 @@ import { DateTime } from 'luxon';
 import DeisClient from '../deis/DeisClient';
 import DeisResults from '../deis/DeisResults';
 
-import { DeisResult, Row } from '../Types';
+import { Context, DeisResult, Row } from '../Types';
 import joinCsv from '../util/csv/join';
 import readCsv from '../util/csv/read';
 import writeCsv from '../util/csv/write';
@@ -28,7 +28,7 @@ export default class ChileVaccinationsAges
 		return ['ages'];
 	}
 
-	public static write(_client: DeisClient, results: DeisResults): void
+	public static write(_context: Context, _client: DeisClient, results: DeisResults): void
 	{
 		const result = results.get('ages');
 		const groupNames = this.getGroupNames(result);

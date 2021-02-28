@@ -2,7 +2,7 @@
 import formatNumber from 'format-number';
 import Enumerable from 'linq';
 
-import { DeisResult } from '../Types';
+import { Context, DeisResult } from '../Types';
 import DeisDateConverter from '../deis/DeisDateConverter';
 import DeisResults from '../deis/DeisResults';
 import DeisClient from '../deis/DeisClient';
@@ -18,7 +18,7 @@ export default class MessageGenerator
 		return ['doses'];
 	}
 
-	public static write(_client: DeisClient, results: DeisResults): void
+	public static write(_context: Context, _client: DeisClient, results: DeisResults): void
 	{
 		// Get the right result
 		const result = results.get('doses');

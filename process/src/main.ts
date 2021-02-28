@@ -2,6 +2,7 @@
 import Writers from './writers/Writers';
 import DeisClient from './deis/DeisClient';
 import Logger from './util/Logger';
+import loadContext from './util/loadContext';
 
 const logger = Logger.get('main');
 
@@ -9,10 +10,11 @@ const logger = Logger.get('main');
 {
 	try
 	{
+		const context = loadContext();
 		const client = new DeisClient();
 		const payloads = Writers.getRequiredPayloads();
 		const results = await client.queryAll(payloads);
-		await Writers.write(client, results);
+		await Writers.write(context, client, results);
 	}
 	catch (e)
 	{
