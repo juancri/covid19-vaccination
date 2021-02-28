@@ -23,12 +23,12 @@ export default class ChileVaccinationsComunas
 {
 	public static getRequiredPayloads(): string[]
 	{
-		return ['comunas'];
+		return ['doses-comunas'];
 	}
 
 	public static async write(client: DeisClient, results: DeisResults): Promise<void>
 	{
-		const comunasResult = results.get('comunas');
+		const comunasResult = results.get('doses-comunas');
 		const comunas = comunasResult.stringTable.valueList;
 		const payload = JSON.parse(client.getPayload('doses-comuna'));
 		const firstExpression = payload.sasReportState.data.queryRequests[0].expressions[0];
