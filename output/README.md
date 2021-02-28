@@ -60,6 +60,21 @@ Vaccinations by population age and dose
 
 The value of each cell is the total-to-date
 
+## chile-vaccination-ages-comunas.csv
+
+Vaccinations by comuna, population age and dose
+
+### Columns
+
+- **Comuna:** Comuna
+- **Age:** Population age range
+- **Dose:** "*First*" or "*Second*"
+- **Dates:** Other columns are dates in ISO format
+
+### Values
+
+The value of each cell is the total-to-date
+
 ## chile-vaccination-groups.csv
 
 Vaccinations by population risk groups
