@@ -1,0 +1,326 @@
+{
+	"@element": "SASReport",
+	"xmlns": "http://www.sas.com/sasreportmodel/bird-4.2.4",
+	"nextUniqueNameIndex": 9622,
+	"dataDefinitions": [
+		{
+			"@element": "ParentDataDefinition",
+			"name": "dd7496",
+			"businessItems": [
+				{
+					"name": "bi7500",
+					"base": "bi7487",
+					"@element": "RelationalDataItem"
+				}
+			],
+			"source": "ds6167",
+			"childQueryRelationshipType": "independent",
+			"dataDefinitionList": [
+				{
+					"@element": "DataDefinition",
+					"name": "dd7497",
+					"type": "relational",
+					"relationalQueryList": [
+						{
+							"sortItems": [
+								{
+									"sortDirection": "ascending",
+									"@element": "SortItem",
+									"reference": "bi7500"
+								}
+							],
+							"detail": false,
+							"axes": [
+								{
+									"@element": "Query_Axis",
+									"type": "column",
+									"itemList": [
+										"bi7500"
+									]
+								}
+							],
+							"@element": "RelationalQuery"
+						}
+					],
+					"source": "ds6167",
+					"resultDefinitions": [
+						{
+							"@element": "ResultDefinition",
+							"name": "dd7498",
+							"purpose": "primary",
+							"maxRowsBehavior": "truncate",
+							"maxRowsLookup": "dropdown"
+						}
+					]
+				}
+			]
+		}
+	],
+	"dataSources": [
+		{
+			"@element": "DataSource",
+			"name": "ds6167",
+			"label": "COBERTURAS_TABLERO",
+			"type": "relational",
+			"casResource": {
+				"@element": "CasResource",
+				"server": "cas-shared-default",
+				"library": "ReportesExternos",
+				"table": "COBERTURAS_TABLERO",
+				"locale": "es_419"
+			},
+			"businessItemFolder": {
+				"@element": "BusinessItemFolder",
+				"items": [
+					{
+						"name": "bi7487",
+						"label": "Comuna de residencia",
+						"xref": "NOMBRE_COMUNA",
+						"@element": "DataItem"
+					},
+					{
+						"name": "bi6171",
+						"label": "Región",
+						"xref": "NOMBRE_REGION",
+						"@element": "DataItem"
+					}
+				]
+			}
+		}
+	],
+	"customSorts": [
+		{
+			"@element": "CustomSort",
+			"name": "cs2943",
+			"type": "string",
+			"valueList": [
+				{
+					"@element": "Sort_Value",
+					"value": "Personal de salud"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Personas en centros cerrados"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Personas Servicios esenciales del estado"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Personas Servicios infraestructura crítica"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Funcionarios Públicos"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Población Sana"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Población vulnerable"
+				}
+			]
+		},
+		{
+			"@element": "CustomSort",
+			"name": "cs3731",
+			"type": "string",
+			"valueList": [
+				{
+					"@element": "Sort_Value",
+					"value": " Arica y Parinacota"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Tarapacá"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Antofagasta"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Atacama"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Coquimbo"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Valparaíso"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Metropolitana  Santiago"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Libertador B. O'Higgins"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Maule"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Ñuble"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Bíobío"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " La Araucanía"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Los Ríos"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Los Lagos"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Aisén Gral. C. Ibáñez Campo"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": " Magallanes y  La Antártica Chilena"
+				}
+			]
+		},
+		{
+			"@element": "CustomSort",
+			"name": "cs4923",
+			"type": "string",
+			"valueList": [
+				{
+					"@element": "Sort_Value",
+					"value": "15-17"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "18 - 39"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "40 - 49"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "50 - 59"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "60 y más"
+				}
+			]
+		},
+		{
+			"@element": "CustomSort",
+			"name": "cs4925",
+			"type": "string",
+			"valueList": [
+				{
+					"@element": "Sort_Value",
+					"value": "16-17"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "18 - 39"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "40 - 49"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "50 - 59"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "60 y más"
+				}
+			]
+		},
+		{
+			"@element": "CustomSort",
+			"name": "cs6216",
+			"type": "string",
+			"valueList": [
+				{
+					"@element": "Sort_Value",
+					"value": "15-20"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "21-30"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "31-40"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "41-50"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "51-60"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "61-70"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "71-72"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "73-74"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "75-77"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "78-79"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "80 y más"
+				}
+			]
+		}
+	],
+	"sasReportState": {
+		"@element": "SASReportState",
+		"data": {
+			"@element": "Data_State",
+			"queryRequests": [
+				{
+					"@element": "queryRequest",
+					"data": "dd7496",
+					"dataLevel": "custom"
+				}
+			]
+		},
+		"date": "2021-02-28T06:22:20.689Z",
+		"parameters": [
+			{
+				"@element": "Parameter_State",
+				"prompt": "pr7832",
+				"dataType": "double",
+				"containedValue": "20"
+			}
+		]
+	}
+}

@@ -12,6 +12,7 @@ import ChileVaccinationsType from './ChileVaccinationsType';
 import ChileVaccinationsGroups from './ChileVaccinationsGroups';
 import ChileVaccinationsAges from './ChileVaccinationsAges';
 import MessageGenerator from './MessageGenerator';
+import ChileVaccinationsAgesComunas from './ChileVaccinationsAgesComunas';
 
 const logger = Logger.get('Writers');
 
@@ -21,6 +22,7 @@ const WRITERS: Writer[] = [
 	ChileVaccinationsGroups,
 	ChileVaccinationsAges,
 	ChileVaccinationsComunas,
+	ChileVaccinationsAgesComunas,
 	MessageGenerator,
 ];
 
