@@ -1,4 +1,4 @@
-name: build
+name: 'build and test run'
 
 on:
   push:
@@ -29,3 +29,5 @@ jobs:
         sudo apt install make
     - run: |
         make
+    - run: |
+        node dist/main --test
