@@ -1,14 +1,17 @@
 
 import Enumerable from 'linq';
 import { DateTime } from 'luxon';
+import Bluebird from 'bluebird';
+import cloneDeep from 'lodash.clonedeep';
+
 import DeisClient from '../deis/DeisClient';
 import DeisResults from '../deis/DeisResults';
-
 import { DeisResult, Row } from '../Types';
 import Logger from '../util/Logger';
 import joinCsv from '../util/csv/join';
 import readCsv from '../util/csv/read';
 import writeCsv from '../util/csv/write';
+import { sleep } from '../util/sleep';
 
 interface Temp
 {
@@ -17,10 +20,16 @@ interface Temp
 	second: number;
 }
 
+interface Status
+{
+	done: number;
+}
+
 const TIME_ZONE = 'America/Santiago';
 const TODAY = DateTime.utc().setZone(TIME_ZONE);
 const TODAY_ISO = TODAY.toISODate();
 const FILE_NAME = 'chile-vaccination-ages-comunas.csv';
+const CONCURRENCY_OPTIONS = { concurrency: 5 };
 
 const logger = Logger.get('ChileVaccinationsAgesComunas');
 
@@ -33,31 +42,58 @@ export default class ChileVaccinationsAgesComunas
 
 	public static async write(client: DeisClient, results: DeisResults): Promise<void>
 	{
-		// Get
+		// Get payload
 		const comunasResult = results.get('ages-comunas');
 		const comunas = comunasResult.stringTable.valueList;
 		const payload = JSON.parse(client.getPayload('ages-comuna'));
-		const firstExpression = payload.sasReportState.data.queryRequests[0].expressions[0];
-		const rows: Row[] = [];
-		for (const comuna of comunas)
+
+		// Run with concurrency
+		const status: Status = { done: 0 };
+		const comunasPromise = Bluebird.map(
+			comunas,
+			(comuna: string) => this.getComuna(client, comuna, payload, status),
+			CONCURRENCY_OPTIONS);
+
+		// Wait for requests
+		while (!comunasPromise.isFulfilled())
 		{
-			logger.debug(`Querying ${comuna}...`);
-			const queryComuna = comuna.replace('\'', '\'\'');
-			const queryValue = `eq(\${bi7487},'${queryComuna}')`;
-			firstExpression.containedValue = queryValue;
-			const payloadString = JSON.stringify(payload);
-			const result = await client.queryPayload(payloadString);
-			const groupNames = this.getGroupNames(result);
-			rows.push(...this.getRows(
-				comuna,
-				groupNames,
-				result));
+			const done = status.done;
+			const total = comunas.length;
+			logger.info(`Waiting for requests: ${done} / ${total}`);
+			await sleep(1_000);
 		}
+		const allRows = await comunasPromise;
+		const rows = allRows.flatMap((r: Row[]) => r);
 
 		// Join with previous
 		const previous = readCsv(FILE_NAME);
 		const joined = joinCsv(previous, rows, ['Comuna', 'Age', 'Dose']);
 		writeCsv(joined, FILE_NAME);
+	}
+
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	private static async getComuna(client: DeisClient, comuna: string, originalPayload: any, status: Status): Promise<Row[]>
+	{
+		try
+		{
+			logger.debug(`Querying ${comuna}...`);
+			const payload = cloneDeep(originalPayload);
+			const queryComuna = comuna.replace('\'', '\'\'');
+			const firstExpression = payload.sasReportState.data.queryRequests[0].expressions[0];
+			const queryValue = `eq(\${bi7487},'${queryComuna}')`;
+			firstExpression.containedValue = queryValue;
+			const payloadString = JSON.stringify(payload);
+			const result = await client.queryPayload(payloadString);
+			const groupNames = this.getGroupNames(result);
+			return this.getRows(
+				comuna,
+				groupNames,
+				result);
+		}
+		finally
+		{
+			status.done++;
+		}
 	}
 
 	private static getGroupNames(result: DeisResult): Map<number, string>

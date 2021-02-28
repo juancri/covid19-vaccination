@@ -1,5 +1,7 @@
 
+import Bluebird from 'bluebird';
 import Enumerable from 'linq';
+import cloneDeep from 'lodash.clonedeep';
 
 import DeisClient from '../deis/DeisClient';
 import DeisResults from '../deis/DeisResults';
@@ -7,6 +9,7 @@ import { Row, ValueList } from '../Types';
 import Logger from '../util/Logger';
 import writeCsv from '../util/csv/write';
 import DeisDateConverter from '../deis/DeisDateConverter';
+import { sleep } from '../util/sleep';
 
 interface DoseData
 {
@@ -15,9 +18,15 @@ interface DoseData
 	value: number
 }
 
+interface Status
+{
+	done: number;
+}
+
 const logger = Logger.get('ChileVaccinationsComunas');
 
 const ZERO_ENUMERABLE = Enumerable.from([0]);
+const CONCURRENCY_OPTIONS = { concurrency: 5 };
 
 export default class ChileVaccinationsComunas
 {
@@ -31,17 +40,23 @@ export default class ChileVaccinationsComunas
 		const comunasResult = results.get('doses-comunas');
 		const comunas = comunasResult.stringTable.valueList;
 		const payload = JSON.parse(client.getPayload('doses-comuna'));
-		const firstExpression = payload.sasReportState.data.queryRequests[0].expressions[0];
+
+
+		// Run with concurrency
 		const data = new Map<string, ValueList[]>();
-		for (const comuna of comunas)
+		const status: Status = { done: 0 };
+		const comunasPromise = Bluebird.map(
+			comunas,
+			(comuna: string) => this.getComuna(client, comuna, payload, status, data),
+			CONCURRENCY_OPTIONS);
+
+		// Wait for requests
+		while (!comunasPromise.isFulfilled())
 		{
-			logger.debug(`Querying ${comuna}...`);
-			const queryComuna = comuna.replace('\'', '\'\'');
-			const queryValue = `eq(\${bi3905},'${queryComuna}')`;
-			firstExpression.containedValue = queryValue;
-			const payloadString = JSON.stringify(payload);
-			const result = await client.queryPayload(payloadString);
-			data.set(comuna, result.data.valueList);
+			const done = status.done;
+			const total = comunas.length;
+			logger.info(`Waiting for requests: ${done} / ${total}`);
+			await sleep(1_000);
 		}
 
 		const dates = Enumerable
@@ -55,6 +70,28 @@ export default class ChileVaccinationsComunas
 				comuna, data.get(comuna) ?? [], minDate, maxDate));
 
 		writeCsv(rows, 'chile-vaccination-comunas.csv');
+	}
+
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	private static async getComuna(client: DeisClient, comuna: string, originalPayload: any,
+		status: Status, data: Map<string, ValueList[]>): Promise<void>
+	{
+		try
+		{
+			logger.debug(`Querying ${comuna}...`);
+			const payload = cloneDeep(originalPayload);
+			const firstExpression = payload.sasReportState.data.queryRequests[0].expressions[0];
+			const queryComuna = comuna.replace('\'', '\'\'');
+			const queryValue = `eq(\${bi3905},'${queryComuna}')`;
+			firstExpression.containedValue = queryValue;
+			const payloadString = JSON.stringify(payload);
+			const result = await client.queryPayload(payloadString);
+			data.set(comuna, result.data.valueList);
+		}
+		finally
+		{
+			status.done++;
+		}
 	}
 
 	private static getRows(name: string, valueList: ValueList[],
