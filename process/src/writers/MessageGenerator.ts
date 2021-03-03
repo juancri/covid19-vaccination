@@ -1,4 +1,7 @@
 
+import fs from 'fs';
+import path from 'path';
+
 import formatNumber from 'format-number';
 import Enumerable from 'linq';
 
@@ -10,6 +13,7 @@ import DeisClient from '../deis/DeisClient';
 const TOTAL_POPULATION = 15_000_000;
 const INTEGER_FORMAT = formatNumber({ integerSeparator: '.' });
 const PERCENTAGE_FORMAT = formatNumber({ decimal: ',', truncate: 2 });
+const FILE_PATH = path.join(__dirname, '../../../output/status.txt');
 
 export default class MessageGenerator
 {
@@ -40,6 +44,7 @@ export default class MessageGenerator
 			'(Calculado en base a un universo a vacunar de 15 millones de personas)\n\n' +
 			'#Covid19Chile';
 		console.log(message);
+		fs.writeFileSync(FILE_PATH, message);
 	}
 
 	private static getTotal(result: DeisResult, dose: number): number
