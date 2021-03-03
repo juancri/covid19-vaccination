@@ -81,7 +81,7 @@ export default class ChileVaccinationsAgesComunas
 		{
 			logger.debug(`Querying ${comuna}...`);
 			const payload = cloneDeep(originalPayload);
-			const queryComuna = comuna.replace('\'', '\'\'');
+			const queryComuna = comuna.replace(/'/g, '\'\'');
 			const firstExpression = payload.sasReportState.data.queryRequests[0].expressions[0];
 			const queryValue = `eq(\${bi7487},'${queryComuna}')`;
 			firstExpression.containedValue = queryValue;
