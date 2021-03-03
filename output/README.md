@@ -1,10 +1,14 @@
 
 # COVID-19 Vaccination Data
 
-- All files are updated automatically every hour ([update workflow](https://github.com/juancri/covid19-vaccination/actions?query=workflow%3Aupdate))
+- All files are updated automatically every 4 hours hours ([update workflow](https://github.com/juancri/covid19-vaccination/actions?query=workflow%3Aupdate))
 - Source: [DEIS](https://deis.minsal.cl/)
 
-## chile-vaccination.csv
+## [status.txt](status.txt)
+
+Summary output from the update process
+
+## [chile-vaccination.csv](chile-vaccination.csv)
 
 Vaccines by region and dose
 
@@ -18,7 +22,7 @@ Vaccines by region and dose
 
 The value of each cell is the total-to-date
 
-## chile-vaccination-comunas.csv
+## [chile-vaccination-comunas.csv](chile-vaccination-comunas.csv)
 
 Vaccines by comuna and dose
 
@@ -32,7 +36,7 @@ Vaccines by comuna and dose
 
 The value of each cell is the total-to-date
 
-## chile-vaccination-type.csv
+## [chile-vaccination-type.csv](chile-vaccination-type.csv)
 
 Vaccines by type and dose
 
@@ -46,7 +50,7 @@ Vaccines by type and dose
 
 The value of each cell is the total-to-date
 
-## chile-vaccination-ages.csv
+## [chile-vaccination-ages.csv](chile-vaccination-ages.csv)
 
 Vaccinations by population age and dose
 
@@ -60,7 +64,7 @@ Vaccinations by population age and dose
 
 The value of each cell is the total-to-date
 
-## chile-vaccination-ages-comunas.csv
+## [chile-vaccination-ages-comunas.csv](chile-vaccination-ages-comunas.csv)
 
 Vaccinations by comuna, population age and dose
 
@@ -75,7 +79,7 @@ Vaccinations by comuna, population age and dose
 
 The value of each cell is the total-to-date
 
-## chile-vaccination-groups.csv
+## [chile-vaccination-groups.csv](chile-vaccination-groups.csv)
 
 Vaccinations by population risk groups
 
