@@ -1,34 +1,54 @@
 {
 	"@element": "SASReport",
 	"xmlns": "http://www.sas.com/sasreportmodel/bird-4.2.4",
-	"nextUniqueNameIndex": 6939,
+	"nextUniqueNameIndex": 9622,
 	"dataDefinitions": [
 		{
 			"@element": "ParentDataDefinition",
-			"name": "dd4566",
+			"name": "dd6875",
 			"businessItems": [
 				{
-					"name": "bi4565",
-					"base": "bi2665",
-					"@element": "MultidimensionalDataItem"
-				},
-				{
-					"name": "bi4563",
-					"base": "bi2335",
+					"name": "bi6884",
+					"base": "bi2909",
 					"@element": "RelationalDataItem"
 				},
 				{
-					"name": "bi4564",
-					"base": "bi2336",
+					"name": "bi6886",
+					"base": "bi2911",
+					"@element": "RelationalDataItem"
+				},
+				{
+					"name": "bi6888",
+					"base": "bi2917",
+					"@element": "RelationalDataItem"
+				},
+				{
+					"name": "bi6890",
+					"base": "bi3433",
+					"@element": "RelationalDataItem"
+				},
+				{
+					"name": "bi6892",
+					"base": "bi2914",
+					"@element": "RelationalDataItem"
+				},
+				{
+					"name": "bi6894",
+					"base": "bi3434",
+					"@element": "RelationalDataItem"
+				},
+				{
+					"name": "bi6896",
+					"base": "bi2918",
 					"@element": "RelationalDataItem"
 				}
 			],
-			"source": "ds2322",
+			"source": "ds2903",
 			"childQueryRelationshipType": "independent",
 			"dataDefinitionList": [
 				{
 					"@element": "DataDefinition",
-					"name": "dd4567",
+					"name": "dd6876",
 					"type": "multidimensional",
 					"multidimensionalQueryList": [
 						{
@@ -38,15 +58,19 @@
 									"@element": "Query_Axis",
 									"type": "column",
 									"itemList": [
-										"bi4563",
-										"bi4564"
+										"bi6892",
+										"bi6890",
+										"bi6888",
+										"bi6894",
+										"bi6896"
 									]
 								},
 								{
 									"@element": "Query_Axis",
 									"type": "row",
 									"itemList": [
-										"bi4565"
+										"bi6884",
+										"bi6886"
 									]
 								}
 							],
@@ -58,39 +82,22 @@
 								{
 									"sortDirection": "ascending",
 									"@element": "SortItem",
-									"sortLevelList": [
-										{
-											"sortDirection": "ascending",
-											"@element": "SortLevel",
-											"uniqueLevelName": "bi2325"
-										},
-										{
-											"sortDirection": "ascending",
-											"@element": "SortLevel",
-											"uniqueLevelName": "bi2334"
-										},
-										{
-											"sortDirection": "ascending",
-											"@element": "SortLevel",
-											"uniqueLevelName": "bi2331"
-										},
-										{
-											"sortDirection": "ascending",
-											"@element": "SortLevel",
-											"uniqueLevelName": "bi2329"
-										}
-									],
-									"reference": "bi4565"
+									"reference": "bi6884"
+								},
+								{
+									"sortDirection": "ascending",
+									"@element": "SortItem",
+									"reference": "bi6886"
 								}
 							],
 							"columnTotals": true
 						}
 					],
-					"source": "ds2322",
+					"source": "ds2903",
 					"resultDefinitions": [
 						{
 							"@element": "ResultDefinition",
-							"name": "dd4568",
+							"name": "dd6877",
 							"purpose": "primary",
 							"maxRowsBehavior": "noData",
 							"maxRowsLookup": "crosstab"
@@ -103,104 +110,81 @@
 	"dataSources": [
 		{
 			"@element": "DataSource",
-			"name": "ds2322",
-			"label": "TABLA_PRINCIPAL_COVID",
+			"name": "ds2903",
+			"label": "AVANCE_TABLERO",
 			"type": "relational",
 			"casResource": {
 				"@element": "CasResource",
 				"server": "cas-shared-default",
 				"library": "ReportesExternos",
-				"table": "TABLA_PRINCIPAL_COVID",
-				"locale": "es_ES"
+				"table": "AVANCE_TABLERO",
+				"locale": "es_419"
 			},
 			"businessItemFolder": {
 				"@element": "BusinessItemFolder",
 				"items": [
 					{
-						"name": "bi2665",
-						"label": "Criterio de elegibilidad - Subcriterio de elegibilidad - Región Ocurrencia - NOMBRE_ESTAB",
-						"@element": "DataSource_Hierarchy",
-						"levelList": [
-							{
-								"@element": "DataSource_Level",
-								"reference": "bi2325"
-							},
-							{
-								"@element": "DataSource_Level",
-								"reference": "bi2334"
-							},
-							{
-								"@element": "DataSource_Level",
-								"reference": "bi2331"
-							},
-							{
-								"@element": "DataSource_Level",
-								"reference": "bi2329"
-							}
-						]
-					},
-					{
-						"name": "bi2325",
-						"label": "Criterio de elegibilidad",
-						"xref": "CRITERIO",
-						"@element": "DataItem"
-					},
-					{
-						"name": "bi2334",
-						"label": "Subcriterio de elegibilidad",
-						"xref": "SUB_CRITERIO",
-						"@element": "DataItem"
-					},
-					{
-						"name": "bi2331",
-						"label": "Región Ocurrencia",
+						"name": "bi2909",
 						"sortOn": "custom",
-						"xref": "REGION_CORTO",
-						"customSort": "cs3731",
+						"xref": "Criterio",
+						"customSort": "cs2943",
 						"@element": "DataItem"
 					},
 					{
-						"name": "bi2329",
-						"label": "Establecimiento",
-						"xref": "NOMBRE_ESTAB",
+						"name": "bi2911",
+						"xref": "Subcriterio",
 						"@element": "DataItem"
 					},
 					{
-						"name": "bi2335",
-						"label": "1 Dosis",
+						"name": "bi2917",
+						"label": "Avance de vacunación",
+						"format": "PERCENT12.2",
+						"@element": "AggregateCalculatedItem",
+						"dataType": "double",
+						"expression": {
+							"@element": "Expression",
+							"value": "div(aggregate(sum,group,${bi3433,raw}),aggregate(sum,group,${bi2914,raw}))"
+						}
+					},
+					{
+						"name": "bi3433",
+						"label": "Personas Vacunadas 1° Dosis",
 						"format": "COMMA11.",
-						"xref": "SUM_of_CANTIDAD_DOSIS_PRIMERA",
+						"xref": "SUM_of_SUM_of_1aDOSIS",
 						"@element": "DataItem"
 					},
 					{
-						"name": "bi2336",
-						"label": "2 Dosis",
+						"name": "bi2914",
+						"label": "Población de Referencia",
+						"xref": "SUM_of_total",
+						"@element": "DataItem"
+					},
+					{
+						"name": "bi3434",
+						"label": "Personas Vacunadas 2° Dosis",
 						"format": "COMMA11.",
-						"xref": "SUM_of_CANTIDAD_DOSIS_SEGUNDA",
+						"xref": "SUM_of_SUM_of_2aDOSIS",
 						"@element": "DataItem"
 					},
 					{
-						"name": "bi2330",
-						"label": "Pertenencia Servicio de Salud",
-						"xref": "PERTENENCIA_ESTAB",
+						"name": "bi2918",
+						"label": "Completitud de esquema",
+						"format": "PERCENT12.2",
+						"@element": "AggregateCalculatedItem",
+						"dataType": "double",
+						"expression": {
+							"@element": "Expression",
+							"value": "div(aggregate(sum,group,${bi3434,raw}),aggregate(sum,group,${bi2914,raw}))"
+						}
+					},
+					{
+						"name": "bi2910",
+						"xref": "Región",
 						"@element": "DataItem"
 					},
 					{
-						"name": "bi2328",
-						"label": "Seremi",
-						"xref": "GLOSA",
-						"@element": "DataItem"
-					},
-					{
-						"name": "bi2696",
-						"label": "Servicio de Salud",
-						"xref": "NServicio",
-						"@element": "DataItem"
-					},
-					{
-						"name": "bi2323",
-						"label": "Laboratorio",
-						"xref": "CAMP",
+						"name": "bi2908",
+						"xref": "Comuna",
 						"@element": "DataItem"
 					}
 				]
@@ -219,15 +203,15 @@
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "P. Servicios esenciales del estado"
+					"value": "Personas en centros cerrados"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "P. en centros cerrados"
+					"value": "Personas Servicios esenciales del estado"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "P. Servicios infraestructura crítica"
+					"value": "Personas Servicios infraestructura crítica"
 				},
 				{
 					"@element": "Sort_Value",
@@ -321,7 +305,7 @@
 			"valueList": [
 				{
 					"@element": "Sort_Value",
-					"value": "Menor 18"
+					"value": "15-17"
 				},
 				{
 					"@element": "Sort_Value",
@@ -337,39 +321,7 @@
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "60 - 69"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "70 - 72"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "73 - 74"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "75 - 77"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "78 - 80"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "81 - 84"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "85 - 86"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "87 - 89"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "90 y más"
+					"value": "60 y más"
 				}
 			]
 		},
@@ -407,27 +359,31 @@
 			"valueList": [
 				{
 					"@element": "Sort_Value",
-					"value": "15-17"
+					"value": "15-20"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "18-39"
+					"value": "21-30"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "40-49"
+					"value": "31-40"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "50-59"
+					"value": "41-50"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "60-69"
+					"value": "51-60"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "70-72"
+					"value": "61-70"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "71-72"
 				},
 				{
 					"@element": "Sort_Value",
@@ -439,23 +395,11 @@
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "78-80"
+					"value": "78-79"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "81-84"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "85-86"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "87-89"
-				},
-				{
-					"@element": "Sort_Value",
-					"value": "90 y más"
+					"value": "80 y más"
 				}
 			]
 		}
@@ -467,11 +411,19 @@
 			"queryRequests": [
 				{
 					"@element": "queryRequest",
-					"data": "dd4566",
+					"data": "dd6875",
 					"dataLevel": "custom"
 				}
 			]
 		},
-		"date": "2021-02-15T06:16:46.808Z"
+		"date": "2021-03-08T02:48:15.166Z",
+		"parameters": [
+			{
+				"@element": "Parameter_State",
+				"prompt": "pr7832",
+				"dataType": "double",
+				"containedValue": "20"
+			}
+		]
 	}
 }

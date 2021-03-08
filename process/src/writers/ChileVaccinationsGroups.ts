@@ -29,7 +29,7 @@ export default class ChileVaccinationsGroups
 {
 	public static isEnabled(): boolean
 	{
-		return false;
+		return true;
 	}
 
 	public static getRequiredPayloads(): string[]
@@ -61,9 +61,9 @@ export default class ChileVaccinationsGroups
 
 	private static getRows(groupNames: Map<number, string>, result: DeisResult): Row[]
 	{
-		const groupIndexes = Enumerable.from(result.data.valueList[0]);
-		const firstDoses = Enumerable.from(result.data.valueList[1]);
-		const secondDoses = Enumerable.from(result.data.valueList[2]);
+		const groupIndexes = Enumerable.from(result.data.valueList[1]);
+		const firstDoses = Enumerable.from(result.data.valueList[3]);
+		const secondDoses = Enumerable.from(result.data.valueList[4]);
 
 		return groupIndexes
 			.zip(firstDoses, secondDoses,
