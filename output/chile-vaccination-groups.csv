@@ -1,83 +1,83 @@
-Group,Dose,2021-02-15,2021-02-16,2021-02-17,2021-02-18,2021-02-19,2021-02-20,2021-02-21,2021-03-07,2021-03-08,2021-03-09,2021-03-10
-Total,First,2092453,2320697,2320697,2320697,2320697,2320697,2320697,4049948,4175743,4225248,4451441
-Total,Second,54819,55028,55028,55028,55028,55028,55028,574628,772389,864070,1270251
-Desconocido,First,67,2,,,,,,,,,
-Desconocido,Second,41,0,,,,,,,,,
-Personal de salud,First,485475,500615,500615,500615,500615,500615,500615,,,,
-Personal de salud,Second,53832,53912,53912,53912,53912,53912,53912,,,,
-Personas en centros cerrados,First,33075,34811,34811,34811,34811,34811,34811,,,,
-Personas en centros cerrados,Second,931,1050,1050,1050,1050,1050,1050,,,,
-Personas Servicios esenciales del estado,First,191449,220163,220163,220163,220163,220163,220163,,,,
-Personas Servicios esenciales del estado,Second,15,61,61,61,61,61,61,,,,
-Personas Servicios infraestructura crítica,First,42699,68926,68926,68926,68926,68926,68926,,,,
-Personas Servicios infraestructura crítica,Second,0,5,5,5,5,5,5,,,,
-Población Sana,First,28298,32417,32417,32417,32417,32417,32417,,,,
-Población Sana,Second,0,0,0,0,0,0,0,,,,
-Población vulnerable,First,1311390,1463765,1463765,1463765,1463765,1463765,1463765,,,,
-Población vulnerable,Second,0,0,0,0,0,0,0,,,,
-Adm. apoyo no clinico FFAA y de orden,First,,,,,,,,4154,4202,4232,4301
-Adm. apoyo no clinico FFAA y de orden,Second,,,,,,,,844,1311,1492,2097
-Administrativo de apoyo no clinico sector privado,First,,,,,,,,21442,21617,21677,22031
-Administrativo de apoyo no clinico sector privado,Second,,,,,,,,4977,6040,6679,9095
-Administrativo de apoyo no clinico sector público,First,,,,,,,,26104,26362,26429,26781
-Administrativo de apoyo no clinico sector público,Second,,,,,,,,7147,8863,9826,12847
-Alumnos en práctica sector público,First,,,,,,,,15182,15435,15545,16126
-Alumnos en práctica sector público,Second,,,,,,,,6617,7700,7914,9035
-"Alumnos en práctica, sector privado",First,,,,,,,,9063,9300,9368,9707
-"Alumnos en práctica, sector privado",Second,,,,,,,,3011,3483,3635,4378
-FFAA y de orden,First,,,,,,,,23008,23166,23253,23558
-FFAA y de orden,Second,,,,,,,,8049,9999,10908,13837
-Privado,First,,,,,,,,184728,186178,186604,189062
-Privado,Second,,,,,,,,83827,97062,101803,120260
-Público,First,,,,,,,,300442,301914,302377,304890
-Público,Second,,,,,,,,191869,208511,213996,234077
-Establecimientos de Larga Estadia de Adultos Mayores (ELEAM),First,,,,,,,,26870,26941,26977,27021
-Establecimientos de Larga Estadia de Adultos Mayores (ELEAM),Second,,,,,,,,11589,12843,13675,16190
-Instituciones de Salud Mental,First,,,,,,,,3758,3885,3879,3955
-Instituciones de Salud Mental,Second,,,,,,,,727,910,941,1304
-Población privada de libertad,First,,,,,,,,4083,4151,4203,4218
-Población privada de libertad,Second,,,,,,,,11,42,113,502
-Servicio Nacional de Menores (SENAME),First,,,,,,,,9814,9935,9948,10130
-Servicio Nacional de Menores (SENAME),Second,,,,,,,,3088,3693,3922,5165
-Administración del Estado,First,,,,,,,,126028,127323,127755,130971
-Administración del Estado,Second,,,,,,,,190,4194,7029,26039
-Atencion directa a la Ciudada,First,,,,,,,,126648,127961,128338,132618
-Atencion directa a la Ciudada,Second,,,,,,,,401,3371,5385,18323
-Carabineros- PDI,First,,,,,,,,46626,47027,47179,47904
-Carabineros- PDI,Second,,,,,,,,186,3516,6560,17104
-Farmacias y laboratorios,First,,,,,,,,24955,25249,25292,25716
-Farmacias y laboratorios,Second,,,,,,,,58,1180,1977,6795
-Fuerzas Armadas,First,,,,,,,,33729,33871,33990,34891
-Fuerzas Armadas,Second,,,,,,,,1757,2957,3716,7519
-Gendarmería,First,,,,,,,,4861,4934,4994,5587
-Gendarmería,Second,,,,,,,,5,20,52,477
-Personal . crítico de Gobierno,First,,,,,,,,0,0,0,0
-Personal . crítico de Gobierno,Second,,,,,,,,0,0,0,0
-Personal de funciones en empresas de transporte de personas,First,,,,,,,,11698,11868,11971,12279
-Personal de funciones en empresas de transporte de personas,Second,,,,,,,,126,168,265,911
-Personas  funciones en transporte de productos criticos,First,,,,,,,,1532,1552,1552,1593
-Personas  funciones en transporte de productos criticos,Second,,,,,,,,1,4,9,90
-Personas de funciones en empresas de servicios básicos,First,,,,,,,,16869,17259,17306,17668
-Personas de funciones en empresas de servicios básicos,Second,,,,,,,,146,269,465,2048
-"Personas en funciones en ONEMI, CONAF, Bomberos",First,,,,,,,,17501,17574,17640,18141
-"Personas en funciones en ONEMI, CONAF, Bomberos",Second,,,,,,,,91,150,416,2588
-Personas vacunadas por estudio clínico,First,,,,,,,,0,0,0,0
-Personas vacunadas por estudio clínico,Second,,,,,,,,0,0,0,0
-Profesores y Parvularias,First,,,,,,,,313992,316745,317368,320781
-Profesores y Parvularias,Second,,,,,,,,3,22,70,315
-Recolectores de basura,First,,,,,,,,0,0,0,0
-Recolectores de basura,Second,,,,,,,,0,0,0,0
-Otros funcionarios públicos,First,,,,,,,,0,0,0,0
-Otros funcionarios públicos,Second,,,,,,,,0,0,0,0
-Población entre 18 a 39 años.,First,,,,,,,,44309,44757,44926,45861
-Población entre 18 a 39 años.,Second,,,,,,,,658,1113,1335,2644
-Población entre 40 a 49 años.,First,,,,,,,,34410,34567,34713,35508
-Población entre 40 a 49 años.,Second,,,,,,,,799,1325,1627,3313
-Población entre 50 a 59 años.,First,,,,,,,,43732,55529,59269,70147
-Población entre 50 a 59 años.,Second,,,,,,,,1938,3234,3898,7011
-Enfermos crónicos desde los 16 a 59 años,First,,,,,,,,21729,29597,37134,86273
-Enfermos crónicos desde los 16 a 59 años,Second,,,,,,,,17,18,18,19
-Enfermos crónicos desde los 18 a 59 años,First,,,,,,,,41970,102417,127080,227531
-Enfermos crónicos desde los 18 a 59 años,Second,,,,,,,,508,970,1294,3440
-Personas mayores de 60 años,First,,,,,,,,2510711,2544427,2554249,2596192
-Personas mayores de 60 años,Second,,,,,,,,245988,389421,455050,742828
+Group,Dose,2021-02-15,2021-02-16,2021-02-17,2021-02-18,2021-02-19,2021-02-20,2021-02-21,2021-03-07,2021-03-08,2021-03-09,2021-03-10,2021-03-11
+Total,First,2092453,2320697,2320697,2320697,2320697,2320697,2320697,4049948,4175743,4225248,4451441,4451441
+Total,Second,54819,55028,55028,55028,55028,55028,55028,574628,772389,864070,1270251,1270251
+Desconocido,First,67,2,,,,,,,,,,
+Desconocido,Second,41,0,,,,,,,,,,
+Personal de salud,First,485475,500615,500615,500615,500615,500615,500615,,,,,
+Personal de salud,Second,53832,53912,53912,53912,53912,53912,53912,,,,,
+Personas en centros cerrados,First,33075,34811,34811,34811,34811,34811,34811,,,,,
+Personas en centros cerrados,Second,931,1050,1050,1050,1050,1050,1050,,,,,
+Personas Servicios esenciales del estado,First,191449,220163,220163,220163,220163,220163,220163,,,,,
+Personas Servicios esenciales del estado,Second,15,61,61,61,61,61,61,,,,,
+Personas Servicios infraestructura crítica,First,42699,68926,68926,68926,68926,68926,68926,,,,,
+Personas Servicios infraestructura crítica,Second,0,5,5,5,5,5,5,,,,,
+Población Sana,First,28298,32417,32417,32417,32417,32417,32417,,,,,
+Población Sana,Second,0,0,0,0,0,0,0,,,,,
+Población vulnerable,First,1311390,1463765,1463765,1463765,1463765,1463765,1463765,,,,,
+Población vulnerable,Second,0,0,0,0,0,0,0,,,,,
+Adm. apoyo no clinico FFAA y de orden,First,,,,,,,,4154,4202,4232,4301,4301
+Adm. apoyo no clinico FFAA y de orden,Second,,,,,,,,844,1311,1492,2097,2097
+Administrativo de apoyo no clinico sector privado,First,,,,,,,,21442,21617,21677,22031,22031
+Administrativo de apoyo no clinico sector privado,Second,,,,,,,,4977,6040,6679,9095,9095
+Administrativo de apoyo no clinico sector público,First,,,,,,,,26104,26362,26429,26781,26781
+Administrativo de apoyo no clinico sector público,Second,,,,,,,,7147,8863,9826,12847,12847
+Alumnos en práctica sector público,First,,,,,,,,15182,15435,15545,16126,16126
+Alumnos en práctica sector público,Second,,,,,,,,6617,7700,7914,9035,9035
+"Alumnos en práctica, sector privado",First,,,,,,,,9063,9300,9368,9707,9707
+"Alumnos en práctica, sector privado",Second,,,,,,,,3011,3483,3635,4378,4378
+FFAA y de orden,First,,,,,,,,23008,23166,23253,23558,23558
+FFAA y de orden,Second,,,,,,,,8049,9999,10908,13837,13837
+Privado,First,,,,,,,,184728,186178,186604,189062,189062
+Privado,Second,,,,,,,,83827,97062,101803,120260,120260
+Público,First,,,,,,,,300442,301914,302377,304890,304890
+Público,Second,,,,,,,,191869,208511,213996,234077,234077
+Establecimientos de Larga Estadia de Adultos Mayores (ELEAM),First,,,,,,,,26870,26941,26977,27021,27021
+Establecimientos de Larga Estadia de Adultos Mayores (ELEAM),Second,,,,,,,,11589,12843,13675,16190,16190
+Instituciones de Salud Mental,First,,,,,,,,3758,3885,3879,3955,3955
+Instituciones de Salud Mental,Second,,,,,,,,727,910,941,1304,1304
+Población privada de libertad,First,,,,,,,,4083,4151,4203,4218,4218
+Población privada de libertad,Second,,,,,,,,11,42,113,502,502
+Servicio Nacional de Menores (SENAME),First,,,,,,,,9814,9935,9948,10130,10130
+Servicio Nacional de Menores (SENAME),Second,,,,,,,,3088,3693,3922,5165,5165
+Administración del Estado,First,,,,,,,,126028,127323,127755,130971,130971
+Administración del Estado,Second,,,,,,,,190,4194,7029,26039,26039
+Atencion directa a la Ciudada,First,,,,,,,,126648,127961,128338,132618,132618
+Atencion directa a la Ciudada,Second,,,,,,,,401,3371,5385,18323,18323
+Carabineros- PDI,First,,,,,,,,46626,47027,47179,47904,47904
+Carabineros- PDI,Second,,,,,,,,186,3516,6560,17104,17104
+Farmacias y laboratorios,First,,,,,,,,24955,25249,25292,25716,25716
+Farmacias y laboratorios,Second,,,,,,,,58,1180,1977,6795,6795
+Fuerzas Armadas,First,,,,,,,,33729,33871,33990,34891,34891
+Fuerzas Armadas,Second,,,,,,,,1757,2957,3716,7519,7519
+Gendarmería,First,,,,,,,,4861,4934,4994,5587,5587
+Gendarmería,Second,,,,,,,,5,20,52,477,477
+Personal . crítico de Gobierno,First,,,,,,,,0,0,0,0,0
+Personal . crítico de Gobierno,Second,,,,,,,,0,0,0,0,0
+Personal de funciones en empresas de transporte de personas,First,,,,,,,,11698,11868,11971,12279,12279
+Personal de funciones en empresas de transporte de personas,Second,,,,,,,,126,168,265,911,911
+Personas  funciones en transporte de productos criticos,First,,,,,,,,1532,1552,1552,1593,1593
+Personas  funciones en transporte de productos criticos,Second,,,,,,,,1,4,9,90,90
+Personas de funciones en empresas de servicios básicos,First,,,,,,,,16869,17259,17306,17668,17668
+Personas de funciones en empresas de servicios básicos,Second,,,,,,,,146,269,465,2048,2048
+"Personas en funciones en ONEMI, CONAF, Bomberos",First,,,,,,,,17501,17574,17640,18141,18141
+"Personas en funciones en ONEMI, CONAF, Bomberos",Second,,,,,,,,91,150,416,2588,2588
+Personas vacunadas por estudio clínico,First,,,,,,,,0,0,0,0,0
+Personas vacunadas por estudio clínico,Second,,,,,,,,0,0,0,0,0
+Profesores y Parvularias,First,,,,,,,,313992,316745,317368,320781,320781
+Profesores y Parvularias,Second,,,,,,,,3,22,70,315,315
+Recolectores de basura,First,,,,,,,,0,0,0,0,0
+Recolectores de basura,Second,,,,,,,,0,0,0,0,0
+Otros funcionarios públicos,First,,,,,,,,0,0,0,0,0
+Otros funcionarios públicos,Second,,,,,,,,0,0,0,0,0
+Población entre 18 a 39 años.,First,,,,,,,,44309,44757,44926,45861,45861
+Población entre 18 a 39 años.,Second,,,,,,,,658,1113,1335,2644,2644
+Población entre 40 a 49 años.,First,,,,,,,,34410,34567,34713,35508,35508
+Población entre 40 a 49 años.,Second,,,,,,,,799,1325,1627,3313,3313
+Población entre 50 a 59 años.,First,,,,,,,,43732,55529,59269,70147,70147
+Población entre 50 a 59 años.,Second,,,,,,,,1938,3234,3898,7011,7011
+Enfermos crónicos desde los 16 a 59 años,First,,,,,,,,21729,29597,37134,86273,86273
+Enfermos crónicos desde los 16 a 59 años,Second,,,,,,,,17,18,18,19,19
+Enfermos crónicos desde los 18 a 59 años,First,,,,,,,,41970,102417,127080,227531,227531
+Enfermos crónicos desde los 18 a 59 años,Second,,,,,,,,508,970,1294,3440,3440
+Personas mayores de 60 años,First,,,,,,,,2510711,2544427,2554249,2596192,2596192
+Personas mayores de 60 años,Second,,,,,,,,245988,389421,455050,742828,742828
