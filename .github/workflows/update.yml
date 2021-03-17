@@ -2,7 +2,7 @@ name: update
 
 on:
   schedule:
-  - cron: "55 0,12,18,21 * * *"
+  - cron: "30 0,12,18,21 * * *"
   workflow_dispatch:
 
 defaults:
