@@ -1,7 +1,7 @@
 Vacunación en Chile hasta el 30/03/2021:
 
-Primera dosis: 6.580.634 personas (43,87%)
-Segunda dosis: 3.423.490 personas (22,82%)
+Primera dosis: 6.668.300 personas (44,45%)
+Segunda dosis: 3.513.361 personas (23,42%)
 
 (Calculado en base a un universo a vacunar de 15 millones de personas)
 
