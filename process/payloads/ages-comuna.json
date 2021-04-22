@@ -1,40 +1,25 @@
 {
 	"@element": "SASReport",
 	"xmlns": "http://www.sas.com/sasreportmodel/bird-4.2.4",
-	"nextUniqueNameIndex": 9622,
+	"nextUniqueNameIndex": 11554,
 	"dataDefinitions": [
 		{
 			"@element": "ParentDataDefinition",
-			"name": "dd6178",
+			"name": "dd11233",
 			"businessItems": [
 				{
-					"name": "bi6181",
-					"base": "bi6168",
-					"@element": "RelationalDataItem"
-				},
-				{
-					"name": "bi6183",
-					"base": "bi6169",
-					"@element": "RelationalDataItem"
-				},
-				{
-					"name": "bi6185",
-					"base": "bi6172",
-					"@element": "RelationalDataItem"
-				},
-				{
-					"name": "bi6187",
-					"base": "bi6170",
-					"@element": "RelationalDataItem"
-				},
-				{
-					"name": "bi6192",
+					"name": "bi11231",
 					"base": "bi6190",
 					"@element": "RelationalDataItem"
 				},
 				{
-					"name": "bi6194",
+					"name": "bi11232",
 					"base": "bi6191",
+					"@element": "RelationalDataItem"
+				},
+				{
+					"name": "bi11230",
+					"base": "bi6170",
 					"@element": "RelationalDataItem"
 				}
 			],
@@ -43,7 +28,7 @@
 			"dataDefinitionList": [
 				{
 					"@element": "DataDefinition",
-					"name": "dd6179",
+					"name": "dd11234",
 					"type": "multidimensional",
 					"multidimensionalQueryList": [
 						{
@@ -53,43 +38,36 @@
 									"@element": "Query_Axis",
 									"type": "column",
 									"itemList": [
-										"bi6185",
-										"bi6181",
-										"bi6192",
-										"bi6183",
-										"bi6194"
+										"bi11230"
 									]
 								},
 								{
 									"@element": "Query_Axis",
 									"type": "row",
 									"itemList": [
-										"bi6187"
+										"bi11231",
+										"bi11232"
 									]
 								}
 							],
 							"@element": "MultidimensionalQuery",
-							"rowTotals": true,
-							"rowSubtotals": false,
-							"columnSubtotals": false,
-							"rowSortItems": [
+							"columnSortItems": [
 								{
 									"sortDirection": "ascending",
 									"@element": "SortItem",
-									"reference": "bi6187"
+									"reference": "bi11230"
 								}
-							],
-							"columnTotals": true
+							]
 						}
 					],
 					"source": "ds6167",
 					"resultDefinitions": [
 						{
 							"@element": "ResultDefinition",
-							"name": "dd6180",
+							"name": "dd11229",
 							"purpose": "primary",
-							"maxRowsBehavior": "noData",
-							"maxRowsLookup": "crosstab"
+							"maxRowsBehavior": "truncate",
+							"maxRowsLookup": "graphDefault"
 						}
 					]
 				}
@@ -113,35 +91,6 @@
 				"@element": "BusinessItemFolder",
 				"items": [
 					{
-						"name": "bi6168",
-						"label": "1° Dosis",
-						"format": "COMMA11.",
-						"xref": "1aDOSIS_RES",
-						"@element": "DataItem"
-					},
-					{
-						"name": "bi6169",
-						"label": "2° Dosis",
-						"format": "COMMA11.",
-						"xref": "2aDOSIS_RES",
-						"@element": "DataItem"
-					},
-					{
-						"name": "bi6172",
-						"label": "Población Objetivo",
-						"format": "COMMA12.",
-						"xref": "POBLACION",
-						"@element": "DataItem"
-					},
-					{
-						"name": "bi6170",
-						"label": "Grupo edad",
-						"sortOn": "custom",
-						"xref": "GRUPO_ETARIO",
-						"customSort": "cs6216",
-						"@element": "DataItem"
-					},
-					{
 						"name": "bi6190",
 						"label": "% de personas con al menos 1 Dosis",
 						"format": "PERCENT12.1",
@@ -151,6 +100,20 @@
 							"@element": "Expression",
 							"value": "div(aggregate(sum,group,${bi6168,raw}),aggregate(sum,group,${bi6172,raw}))"
 						}
+					},
+					{
+						"name": "bi6168",
+						"label": "1° Dosis",
+						"format": "COMMA11.",
+						"xref": "1aDOSIS_RES",
+						"@element": "DataItem"
+					},
+					{
+						"name": "bi6172",
+						"label": "Población Objetivo",
+						"format": "COMMA12.",
+						"xref": "TOTAL_POBLACION",
+						"@element": "DataItem"
 					},
 					{
 						"name": "bi6191",
@@ -164,9 +127,26 @@
 						}
 					},
 					{
-						"name": "bi6171",
+						"name": "bi6169",
+						"label": "2° Dosis",
+						"format": "COMMA11.",
+						"xref": "2aDOSIS_RES",
+						"@element": "DataItem"
+					},
+					{
+						"name": "bi6170",
+						"label": "Grupo edad",
+						"sortOn": "custom",
+						"xref": "GRUPO_ETARIO",
+						"customSort": "cs6216",
+						"@element": "DataItem"
+					},
+					{
+						"name": "bi11060",
 						"label": "Región",
-						"xref": "NOMBRE_REGION",
+						"sortOn": "custom",
+						"xref": "NOMBRE_REGION1",
+						"customSort": "cs11107",
 						"@element": "DataItem"
 					},
 					{
@@ -207,11 +187,11 @@
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "Población Sana"
+					"value": "Población vulnerable"
 				},
 				{
 					"@element": "Sort_Value",
-					"value": "Población vulnerable"
+					"value": "Población Sana"
 				}
 			]
 		},
@@ -390,6 +370,81 @@
 					"value": "80 y más"
 				}
 			]
+		},
+		{
+			"@element": "CustomSort",
+			"name": "cs11107",
+			"type": "string",
+			"valueList": [
+				{
+					"@element": "Sort_Value",
+					"value": "Arica y Parinacota"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Tarapacá"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Antofagasta"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Atacama"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Coquimbo"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Valparaíso"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Metropolitana de Santiago"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Libertador General Bernardo O'Higgins"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Maule"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Ñuble"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Biobío"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "La Araucanía"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Los Ríos"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Los Lagos"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Aysén del General Carlos Ibáñez del Campo"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Magallanes y de la Antártica Chilena"
+				},
+				{
+					"@element": "Sort_Value",
+					"value": "Ignorada"
+				}
+			]
 		}
 	],
 	"sasReportState": {
@@ -399,7 +454,7 @@
 			"queryRequests": [
 				{
 					"@element": "queryRequest",
-					"data": "dd6178",
+					"data": "dd11233",
 					"dataLevel": "custom",
 					"expressions": [
 						{
@@ -412,14 +467,6 @@
 				}
 			]
 		},
-		"date": "2021-02-28T06:22:34.777Z",
-		"parameters": [
-			{
-				"@element": "Parameter_State",
-				"prompt": "pr7832",
-				"dataType": "double",
-				"containedValue": "20"
-			}
-		]
+		"date": "2021-04-22T02:45:59.584Z"
 	}
 }
