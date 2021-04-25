@@ -31,7 +31,10 @@ export default class DeisAuthScrapper
 					return;
 
 				// Check status
-				const response = await request.response();
+				const response = request.response();
+				if (!response)
+					throw new Error('Null response');
+
 				const status = response.status();
 				if ((status >= 300) && (status <= 399)) {
 					return;
