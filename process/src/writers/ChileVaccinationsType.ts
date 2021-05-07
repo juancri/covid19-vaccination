@@ -15,12 +15,22 @@ interface DoseData
 }
 
 const ZERO_ENUMERABLE = Enumerable.from([0]);
+const GROUPS = new Map([
+	['Total', 'doses'],
+	['Pfizer', 'pfizer'],
+	['Sinovac', 'sinovac'],
+	['Astra-Zeneca', 'astra-zeneca']
+]);
+const REQUIRED_PAYLOADS = Enumerable
+	.from(Array.from(GROUPS.entries()))
+	.select(g => g[1])
+	.toArray();
 
 export default class ChileVaccinationsType
 {
 	public static getRequiredPayloads(): string[]
 	{
-		return ['doses', 'pfizer', 'sinovac', 'astra-zeneca'];
+		return REQUIRED_PAYLOADS;
 	}
 
 	public static write(_context: Context, _client: DeisClient, results: DeisResults): void
@@ -29,12 +39,10 @@ export default class ChileVaccinationsType
 		const dates = Enumerable.from(dosesResult.data.valueList[0]);
 		const minDate = dates.min();
 		const maxDate = dates.max();
-		const rows = [
-			...this.getRows('Total', dosesResult, minDate, maxDate),
-			...this.getRows('Pfizer', results.get('pfizer'), minDate, maxDate),
-			...this.getRows('Sinovac', results.get('sinovac'), minDate, maxDate),
-			...this.getRows('Astra-Zeneca', results.get('astra-zeneca'), minDate, maxDate),
-		];
+		const rows = Enumerable
+			.from(Array.from(GROUPS.entries()))
+			.selectMany(g => this.getRows(g[0], results.get(g[1]), minDate, maxDate))
+			.toArray();
 
 		writeCsv(rows, 'chile-vaccination-type.csv');
 	}
