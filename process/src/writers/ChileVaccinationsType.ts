@@ -20,7 +20,7 @@ export default class ChileVaccinationsType
 {
 	public static getRequiredPayloads(): string[]
 	{
-		return ['doses', 'pfizer', 'sinovac'];
+		return ['doses', 'pfizer', 'sinovac', 'astra-zeneca'];
 	}
 
 	public static write(_context: Context, _client: DeisClient, results: DeisResults): void
@@ -33,6 +33,7 @@ export default class ChileVaccinationsType
 			...this.getRows('Total', dosesResult, minDate, maxDate),
 			...this.getRows('Pfizer', results.get('pfizer'), minDate, maxDate),
 			...this.getRows('Sinovac', results.get('sinovac'), minDate, maxDate),
+			...this.getRows('Astra-Zeneca', results.get('astra-zeneca'), minDate, maxDate),
 		];
 
 		writeCsv(rows, 'chile-vaccination-type.csv');
