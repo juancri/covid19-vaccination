@@ -83,8 +83,15 @@ export default class ChileVaccinationsType
 			.from(data)
 			.where(x => x.excelDate <= excelDate)
 			.where(x => x.dose === dose)
-			.select(x => x.value)
+			.select(x => this.convert(x.value))
 			.concat(ZERO_ENUMERABLE)
 			.sum();
+	}
+
+	private static convert(input: number | string): number
+	{
+		return typeof input === 'number' ?
+			input :
+			0;
 	}
 }
