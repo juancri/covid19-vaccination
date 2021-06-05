@@ -19,6 +19,7 @@ const GROUPS = new Map([
 	['Total', 'doses'],
 	['Pfizer', 'pfizer'],
 	['Sinovac', 'sinovac'],
+	['CanSino', 'cansino'],
 	['Astra-Zeneca', 'astra-zeneca']
 ]);
 const REQUIRED_PAYLOADS = Enumerable

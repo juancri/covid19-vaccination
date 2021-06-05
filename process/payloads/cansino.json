@@ -437,12 +437,12 @@
 							"@element": "expression",
 							"type": "filter",
 							"dataStage": "detail",
-							"containedValue": "or(eq(${bi3903},'Campaña SARS-CoV-2 (AstraZeneca)'),eq(${bi3903},'Campaña SARS-CoV-2 (CanSino)'),eq(${bi3903},'Campaña SARS-CoV-2 (Pfizer)'),eq(${bi3903},'Campaña SARS-CoV-2 (Sinovac)'))"
+							"containedValue": "eq(${bi3903},'Campaña SARS-CoV-2 (CanSino)')"
 						}
 					]
 				}
 			]
 		},
-		"date": "2021-06-05T01:10:16.450Z"
+		"date": "2021-06-05T01:13:41.053Z"
 	}
 }
