@@ -368,7 +368,7 @@
 							"@element": "expression",
 							"type": "filter",
 							"dataStage": "detail",
-							"containedValue": "or(eq(${bi3903},'Campaña SARS-CoV-2 (Pfizer)'),eq(${bi3903},'Campaña SARS-CoV-2 (Sinovac)'))"
+							"containedValue": "or(eq(${bi3903},'Campaña SARS-CoV-2 (AstraZeneca)'),eq(${bi3903},'Campaña SARS-CoV-2 (CanSino)'),eq(${bi3903},'Campaña SARS-CoV-2 (Pfizer)'),eq(${bi3903},'Campaña SARS-CoV-2 (Sinovac)'))"
 						}
 					]
 				}
