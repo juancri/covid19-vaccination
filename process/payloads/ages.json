@@ -1,22 +1,12 @@
 {
 	"@element": "SASReport",
 	"xmlns": "http://www.sas.com/sasreportmodel/bird-4.2.4",
-	"nextUniqueNameIndex": 11554,
+	"nextUniqueNameIndex": 12973,
 	"dataDefinitions": [
 		{
 			"@element": "ParentDataDefinition",
 			"name": "dd11266",
 			"businessItems": [
-				{
-					"name": "bi11261",
-					"base": "bi6168",
-					"@element": "RelationalDataItem"
-				},
-				{
-					"name": "bi11263",
-					"base": "bi6169",
-					"@element": "RelationalDataItem"
-				},
 				{
 					"name": "bi11260",
 					"base": "bi6172",
@@ -36,6 +26,41 @@
 					"name": "bi11290",
 					"base": "bi8854",
 					"@element": "MultidimensionalDataItem"
+				},
+				{
+					"name": "bi11771",
+					"base": "bi8835",
+					"@element": "RelationalDataItem"
+				},
+				{
+					"name": "bi11772",
+					"expression": {
+						"@element": "Expression",
+						"value": "or(in(${bi11771,binned},'18-39','40-49','50-59','60-69','70-79','80 y más años'),ismissing(${bi11771,binned}))"
+					},
+					"editorProperties": [
+						{
+							"@element": "Editor_Property",
+							"key": "complexity",
+							"value": "SINGLE_DATA_ITEM"
+						},
+						{
+							"@element": "Editor_Property",
+							"key": "interactiveEditingAllowed",
+							"value": "TRUE"
+						}
+					],
+					"@element": "RelationalFilterItem"
+				},
+				{
+					"name": "bi12820",
+					"base": "bi12818",
+					"@element": "RelationalDataItem"
+				},
+				{
+					"name": "bi12822",
+					"base": "bi12819",
+					"@element": "RelationalDataItem"
 				}
 			],
 			"source": "ds6167",
@@ -54,10 +79,10 @@
 									"type": "column",
 									"itemList": [
 										"bi11260",
-										"bi11261",
 										"bi11262",
-										"bi11263",
-										"bi11264"
+										"bi12820",
+										"bi11264",
+										"bi12822"
 									]
 								},
 								{
@@ -74,16 +99,11 @@
 							"columnSubtotals": false,
 							"rowSortItems": [
 								{
-									"sortDirection": "ascending",
-									"@element": "MeasureSortItem",
-									"reference": "bi11262"
-								},
-								{
-									"sortDirection": "ascending",
+									"sortDirection": "descending",
 									"@element": "SortItem",
 									"sortLevelList": [
 										{
-											"sortDirection": "ascending",
+											"sortDirection": "descending",
 											"@element": "SortLevel",
 											"uniqueLevelName": "bi8835"
 										},
@@ -111,12 +131,12 @@
 					]
 				}
 			],
-			"navigationSteps": [
-				{
-					"@element": "Step",
-					"expression": "expand(${bi11290,binned},['80 y más años'])"
-				}
-			]
+			"appliedFilters": {
+				"@element": "AppliedFilters",
+				"detailFilters": [
+					"bi11772"
+				]
+			}
 		}
 	],
 	"dataSources": [
@@ -136,20 +156,6 @@
 				"@element": "BusinessItemFolder",
 				"items": [
 					{
-						"name": "bi6168",
-						"label": "1° Dosis",
-						"format": "COMMA11.",
-						"xref": "1aDOSIS_RES",
-						"@element": "DataItem"
-					},
-					{
-						"name": "bi6169",
-						"label": "2° Dosis",
-						"format": "COMMA11.",
-						"xref": "2aDOSIS_RES",
-						"@element": "DataItem"
-					},
-					{
 						"name": "bi6172",
 						"label": "Población Objetivo",
 						"format": "COMMA12.",
@@ -158,25 +164,39 @@
 					},
 					{
 						"name": "bi6190",
-						"label": "% de personas con al menos 1 Dosis",
+						"label": "% Avance vacunación",
 						"format": "PERCENT12.1",
 						"@element": "AggregateCalculatedItem",
 						"dataType": "double",
 						"expression": {
 							"@element": "Expression",
-							"value": "div(aggregate(sum,group,${bi6168,raw}),aggregate(sum,group,${bi6172,raw}))"
+							"value": "div(aggregate(sum,group,${bi12818,raw}),aggregate(sum,group,${bi6172,raw}))"
 						}
 					},
 					{
+						"name": "bi12818",
+						"label": "Personas vacunadas única y 1° dosis",
+						"format": "COMMA12.",
+						"xref": "UNICA Y 1 DOSIS",
+						"@element": "DataItem"
+					},
+					{
 						"name": "bi6191",
-						"label": "% de personas con 1° y 2° Dosis",
+						"label": "%Cobertura vacunación",
 						"format": "PERCENT12.1",
 						"@element": "AggregateCalculatedItem",
 						"dataType": "double",
 						"expression": {
 							"@element": "Expression",
-							"value": "div(aggregate(sum,group,${bi6169,raw}),aggregate(sum,group,${bi6172,raw}))"
+							"value": "div(aggregate(sum,group,${bi12819,raw}),aggregate(sum,group,${bi6172,raw}))"
 						}
+					},
+					{
+						"name": "bi12819",
+						"label": "Personas vacunadas única y 2° dosis",
+						"format": "COMMA12.",
+						"xref": "UNICA Y 2 DOSIS",
+						"@element": "DataItem"
 					},
 					{
 						"name": "bi8854",
@@ -215,7 +235,7 @@
 					},
 					{
 						"name": "bi8842",
-						"label": "Edad",
+						"label": "EDAD_ANOS (1)",
 						"usage": "categorical",
 						"xref": "EDAD_ANOS",
 						"@element": "DataItem"
@@ -634,17 +654,10 @@
 				{
 					"@element": "queryRequest",
 					"data": "dd11266",
-					"dataLevel": "custom",
-					"expressions": [
-						{
-							"@element": "expression",
-							"type": "steps",
-							"containedValue": "expand(${bi11290,binned},['80 y más años'])"
-						}
-					]
+					"dataLevel": "custom"
 				}
 			]
 		},
-		"date": "2021-04-22T02:41:05.354Z"
+		"date": "2021-06-07T01:29:19.514Z"
 	}
 }

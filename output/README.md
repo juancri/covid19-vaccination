@@ -15,7 +15,7 @@ Vaccines by region and dose
 ### Columns
 
 - **Region:** Region of Chile or "*Total*", which is the sum of all regions.
-- **Dose:** "*First*" or "*Second*"
+- **Dose:** "*First*" or "*Second*" (*Second* rows include single-dose vaccinations)
 - **Dates:** Other columns are dates in ISO format
 
 ### Values
@@ -29,7 +29,7 @@ Vaccines by comuna and dose
 ### Columns
 
 - **Comuna:** Comuna
-- **Dose:** "*First*" or "*Second*"
+- **Dose:** "*First*" or "*Second*" (*Second* rows include single-dose vaccinations)
 - **Dates:** Other columns are dates in ISO format
 
 ### Values
@@ -42,8 +42,8 @@ Vaccines by type and dose
 
 ### Columns
 
-- **Type:** Vaccine type (eg: Pfizer, Sinovac)
-- **Dose:** "*First*" or "*Second*"
+- **Type:** Vaccine type (eg: Pfizer, Sinovac, Astra-Zeneca or CanSino)
+- **Dose:** "*First*" or "*Second*" (*Second* rows include single-dose vaccinations)
 - **Dates:** Other columns are dates in ISO format
 
 ### Values
@@ -57,12 +57,16 @@ Vaccinations by population age and dose
 ### Columns
 
 - **Age:** Population age range
-- **Dose:** "*First*" or "*Second*"
+- **Dose:** "*First*" or "*Second*" (*Second* rows include single-dose vaccinations)
 - **Dates:** Other columns are dates in ISO format
 
 ### Values
 
 The value of each cell is the total-to-date
+
+### Notes
+
+- We have tried our best to keep historic data but age ranges have changed at least twice over time.
 
 ## [chile-vaccination-ages-comunas.csv](chile-vaccination-ages-comunas.csv)
 
@@ -72,7 +76,7 @@ Vaccinations by comuna, population age and dose
 
 - **Comuna:** Comuna
 - **Age:** Population age range
-- **Dose:** "*First*" or "*Second*"
+- **Dose:** "*First*" or "*Second*" (*Second* rows include single-dose vaccinations)
 - **Dates:** Other columns are dates in ISO format
 
 ### Values
@@ -80,6 +84,8 @@ Vaccinations by comuna, population age and dose
 The value of each cell is the total-to-date
 
 ## [chile-vaccination-groups.csv](chile-vaccination-groups.csv)
+
+***THIS FILES IS NOT UPDATED ANYMORE***
 
 Vaccinations by population risk groups
 
