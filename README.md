@@ -1,3 +1,7 @@
+# Fin del soporte
+
+### Este repositorio ya no recibe más actualizaciones. Puedes acceder a los datos de vacunaciones desde el repositorio del ministerio de ciencias: https://github.com/MinCiencia/Datos-COVID19
+
 
 ## COVID-19 Vaccination
 
