@@ -1,7 +1,7 @@
-Vacunación en Chile hasta el 07/07/2021:
+Vacunación en Chile hasta el 09/07/2021:
 
-Primera dosis: 12.588.929 personas (83,92%)
-Segunda dosis: 10.639.756 personas (70,93%)
+Primera dosis: 12.738.978 personas (84,92%)
+Segunda dosis: 10.839.402 personas (72,26%)
 
 (Calculado en base a un universo a vacunar de 15 millones de personas)
 
