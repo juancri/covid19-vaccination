@@ -1,7 +1,7 @@
-Vacunación en Chile hasta el 04/10/2021:
+Vacunación en Chile hasta el 05/10/2021:
 
-Primera dosis: 14.117.938.658226148373750513217160277911698625120425122861114199103937592741049362 personas (94,11%)
-Segunda dosis: 13.606.893 personas (90,71%)
+Primera dosis: 14.118.023.65823614837375051323716037791169871612056612286811466710444259284108267145368 personas (94,12%)
+Segunda dosis: 13.622.355 personas (90,81%)
 
 (Calculado en base a un universo a vacunar de 15 millones de personas)
 
