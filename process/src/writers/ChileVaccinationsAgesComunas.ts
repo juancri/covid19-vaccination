@@ -27,7 +27,7 @@ interface Status
 
 const TIME_ZONE = 'America/Santiago';
 const TODAY = DateTime.utc().setZone(TIME_ZONE);
-const TODAY_ISO = TODAY.toISODate();
+const TODAY_ISO = TODAY.toISODate() as string;
 const FILE_NAME = 'chile-vaccination-ages-comunas.csv';
 const CONCURRENCY_OPTIONS = { concurrency: 5 };
 

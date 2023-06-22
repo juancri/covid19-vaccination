@@ -11,15 +11,19 @@ export default class DeisAuthScrapper
 {
 	public static async getCredentials(): Promise<DeisCredentials>
 	{
+		logger.info('Creating browser');
 		const browser = await puppeteer.launch({ headless: true });
 
 		try
 		{
+			logger.info('Creating page...');
 			const page = await browser.newPage();
+			logger.info('Intercepting page...');
 			await page.setRequestInterception(true);
 			const requests: HTTPRequest[] = [];
 
 			page.on('request', request => {
+				logger.debug('Handling request...');
 				request.continue();
 			});
 

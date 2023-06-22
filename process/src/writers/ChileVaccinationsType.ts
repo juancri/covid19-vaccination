@@ -57,7 +57,7 @@ export default class ChileVaccinationsType
 		for (let dateNumber = minDate; dateNumber <= maxDate; dateNumber++)
 		{
 			const date = DeisDateConverter.convert(dateNumber);
-			const isoDate = date.toISODate();
+			const isoDate = date.toISODate() ?? '';
 			first[isoDate] = this.getValue(data, dateNumber, 0);
 			second[isoDate] = this.getValue(data, dateNumber, 1);
 		}

@@ -1,7 +1,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import stringify from 'csv-stringify/lib/sync';
+import { stringify } from 'csv-stringify/sync';
 
 import { Row } from '../../Types';
 

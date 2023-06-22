@@ -10,16 +10,22 @@ const logger = Logger.get('main');
 {
 	try
 	{
+		logger.info('Loading context...');
 		const context = loadContext();
+		logger.info('Creating client...');
 		const client = new DeisClient();
+		logger.info('Getting payloads...');
 		const payloads = Writers.getRequiredPayloads();
+		logger.info('Querying payloads...');
 		const results = await client.queryAll(payloads);
+		logger.info('Writing results...');
 		await Writers.write(context, client, results);
+		logger.info('Done!');
 	}
 	catch (e)
 	{
 		logger.error('General error');
-		logger.error(e.stack);
+		logger.error(e);
 		process.exit(1);
 	}
 })();

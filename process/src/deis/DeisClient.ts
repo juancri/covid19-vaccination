@@ -22,8 +22,10 @@ export default class DeisClient
 
 	public async queryAll(payloads: string[]): Promise<DeisResults>
 	{
+		logger.info('Initializing DEIS client...');
 		await this.init();
 		const results = new Map<string, DeisResult>();
+		logger.info(`Looking though ${payloads.length} payloads...`);
 		for (const payloadName of payloads)
 		{
 			logger.debug(`Loading ${payloadName}...`);
@@ -71,7 +73,16 @@ export default class DeisClient
 		if (this.credentials)
 			return;
 
-		this.credentials = await this.credentialsPromise;
+		logger.info('Waiting for credentials promise to resolve...');
+		try
+		{
+			this.credentials = await this.credentialsPromise;
+		}
+		catch (e)
+		{
+			logger.error('Error while waiting for credentials: ' + e);
+			throw e;
+		}
 	}
 
 	private getUrl(): string
