@@ -9,8 +9,8 @@ This program:
 
 # Requirements
 
-- [Node 14.x](https://nodejs.org)
-- [make](https://www.gnu.org/software/make/)
+- [Node 18.x](https://nodejs.org)
+- [GNU Make](https://www.gnu.org/software/make/)
 
 ## Setup
 
