@@ -9,18 +9,14 @@ import ChileVaccinations from './ChileVaccinations';
 import ChileVaccinationsComunas from './ChileVaccinationsComunas';
 import DeisClient from '../deis/DeisClient';
 import ChileVaccinationsType from './ChileVaccinationsType';
-import ChileVaccinationsAges from './ChileVaccinationsAges';
 import MessageGenerator from './MessageGenerator';
-import ChileVaccinationsAgesComunas from './ChileVaccinationsAgesComunas';
 
 const logger = Logger.get('Writers');
 
 const WRITERS: Writer[] = [
 	ChileVaccinations,
 	ChileVaccinationsType,
-	ChileVaccinationsAges,
 	ChileVaccinationsComunas,
-	ChileVaccinationsAgesComunas,
 	MessageGenerator,
 ];
 
