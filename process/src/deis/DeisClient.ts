@@ -6,7 +6,7 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
 import { DeisCredentials, DeisResult } from '../Types';
-import DeisAuthScrapper from './DeisAuthScraper';
+import DeisAuthScraper from './DeisAuthScraper';
 import Logger from '../util/Logger';
 import DeisResults from './DeisResults';
 
@@ -17,7 +17,7 @@ const BASE_URL = 'https://informesdeis.minsal.cl/reportData/jobs?indexStrings=tr
 export default class DeisClient
 {
 	private credentials: DeisCredentials | null = null;
-	private credentialsPromise = DeisAuthScrapper.getCredentials();
+	private credentialsPromise = DeisAuthScraper.getCredentials();
 	private sequence = 1;
 
 	public async queryAll(payloads: string[]): Promise<DeisResults>

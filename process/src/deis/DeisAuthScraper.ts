@@ -9,7 +9,7 @@ const WAIT_FOR_SELECTOR_OPTIONS = { timeout: 120_000 };
 
 const logger = Logger.get('DeisAuthScraper');
 
-export default class DeisAuthScrapper
+export default class DeisAuthScraper
 {
 	public static async getCredentials(): Promise<DeisCredentials>
 	{
