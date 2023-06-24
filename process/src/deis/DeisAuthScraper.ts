@@ -15,7 +15,7 @@ export default class DeisAuthScrapper
 	{
 
 		logger.info('Creating browser');
-		const browser = await puppeteer.launch({ headless: true });
+		const browser = await puppeteer.launch({ headless: 'new' });
 
 		try
 		{
