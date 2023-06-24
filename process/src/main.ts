@@ -25,7 +25,7 @@ const logger = Logger.get('main');
 	catch (e)
 	{
 		logger.error('General error');
-		logger.error(e);
+		logger.error((e as Error).stack);
 		process.exit(1);
 	}
 })();
