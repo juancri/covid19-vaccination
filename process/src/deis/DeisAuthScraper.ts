@@ -5,12 +5,15 @@ import { DeisCredentials } from '../Types';
 import { sleep } from '../util/sleep';
 import Logger from '../util/Logger';
 
+const WAIT_FOR_SELECTOR_OPTIONS = { timeout: 120_000 };
+
 const logger = Logger.get('DeisAuthScraper');
 
 export default class DeisAuthScrapper
 {
 	public static async getCredentials(): Promise<DeisCredentials>
 	{
+
 		logger.info('Creating browser');
 		const browser = await puppeteer.launch({ headless: true });
 
@@ -70,7 +73,8 @@ export default class DeisAuthScrapper
 			}
 			logger.debug('Waiting for selector...');
 			await frame.waitForSelector(
-				'#appSplitView-reportPanelView-0-sectionTabBar--header > #appSplitView-reportPanelView-0-sectionTabBar--header-scrollContainer > #appSplitView-reportPanelView-0-sectionTabBar--header-head > #__filter0-appSplitView-reportPanelView-0-sectionTabBar--header-6 > .sapMITBContentArrow');
+				'#appSplitView-reportPanelView-0-sectionTabBar--header > #appSplitView-reportPanelView-0-sectionTabBar--header-scrollContainer > #appSplitView-reportPanelView-0-sectionTabBar--header-head > #__filter0-appSplitView-reportPanelView-0-sectionTabBar--header-6 > .sapMITBContentArrow',
+				WAIT_FOR_SELECTOR_OPTIONS);
 			logger.debug('Sleeping...');
 			await sleep(5_000);
 
