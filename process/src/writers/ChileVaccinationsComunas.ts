@@ -53,13 +53,16 @@ export default class ChileVaccinationsComunas
 			CONCURRENCY_OPTIONS);
 
 		// Wait for requests
-		while (!comunasPromise.isFulfilled())
+		while (comunasPromise.isPending())
 		{
 			const done = status.done;
 			const total = comunas.length;
 			logger.info(`Waiting for requests: ${done} / ${total}`);
 			await sleep(1_000);
 		}
+
+		if (comunasPromise.isRejected())
+			throw comunasPromise.reason();
 
 		const dates = Enumerable
 			.from(Array.from(data.values()) as ValueList[][])
